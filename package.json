@@ -7,7 +7,6 @@
     "node": ">=22"
   },
   "scripts": {
-    "prepare": "git config core.hooksPath .githooks",
     "start": "tsx server/index.ts",
     "typecheck": "tsc --noEmit",
     "test": "npm run typecheck && npm run guard && vitest run && npm run test:e2e",
