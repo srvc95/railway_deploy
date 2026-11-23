@@ -1,0 +1,66 @@
+/* Home, Members, Sandbox CRM and Rules & disclosures page layout (change adopt-keel-shell, tasks 11.1 and 11.2; polished in polish-and-realism task 8). Tokens only; shared classes are not restyled. */
+
+/* ---- Home feed header and Members list ---- */
+.feed-live{display:inline-flex;align-items:center;gap:var(--space-2)}
+.nowrap{white-space:nowrap}
+.mem-list td{padding-top:7px;padding-bottom:7px}
+.mem-list .acct{gap:10px}
+.mem-signal{max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ---- Sandbox CRM ---- */
+.crm-stats{display:block}
+.crm-tabs{margin-bottom:var(--space-4)}
+.crm-stack{display:flex;flex-direction:column;gap:var(--space-4)}
+.crm-field{font-weight:500;text-align:left;text-transform:none;letter-spacing:0;font-size:13px;color:var(--ink);white-space:nowrap}
+.crm-was{color:var(--muted)}
+.crm-steps{margin:0;padding-left:var(--space-5);display:flex;flex-direction:column;gap:var(--space-3)}
+.crm-diff{list-style:none;margin:var(--space-1) 0 0;padding:0;font-size:12.5px;display:flex;flex-direction:column;gap:2px}
+.crm-k{color:var(--muted)}
+.crm-req{font-family:var(--mono);font-size:12px;word-break:break-all}
+.crm-time{white-space:nowrap;font-size:12.5px;color:var(--muted)}
+/* the record's three columns keep their places between states (20/40/40) */
+.crm-record table{table-layout:fixed}
+.crm-c1{width:20%}
+.crm-c2{width:40%}
+.crm-c3{width:40%}
+.crm-record td,.crm-record th{overflow-wrap:anywhere}
+.crm-cell{max-width:360px}
+.crm-writes .sec-h{margin-bottom:var(--space-3)}
+/* write-back log: one line per write, details under the row */
+.crm-log td{padding-top:8px;padding-bottom:8px}
+.crm-sum{max-width:420px}
+.crm-clamp{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+.crm-log tr.crm-detail td{background:var(--sunk);padding:var(--space-3) var(--space-4)}
+.crm-log tr.crm-detail[hidden]{display:none}
+.crm-detail-in{display:flex;flex-direction:column;gap:var(--space-2)}
+.crm-detail-in p{margin:0}
+.crm-log .link{padding:2px 4px;border-radius:var(--r-pill)}
+.crm-log .link:focus-visible,.rules-open:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+
+/* ---- Rules & disclosures ---- */
+.rules-packs{display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-5)}
+.rules-pack{display:flex;flex-direction:column;gap:var(--space-4);min-width:0}
+.rules-head .sec-h{margin-bottom:var(--space-2)}
+.rules-head p{margin:0}
+.rules-open{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px var(--space-2);text-align:left;width:100%;padding:2px 0;border-radius:var(--r-pill);color:inherit}
+.rules-open:hover .rules-title{color:var(--accent)}
+.rules-title{font-weight:600}
+.rules-dates{white-space:nowrap;color:var(--muted)}
+.rules-table td{padding-top:4px;padding-bottom:4px}
+.rules-table tr.rules-detail td{background:var(--sunk);padding:var(--space-3) var(--space-4)}
+.rules-table tr.rules-detail[hidden]{display:none}
+.rules-detail-in{display:flex;flex-direction:column;gap:var(--space-2);max-width:78ch}
+.rules-detail-in p{margin:0}
+.rules-cites{display:flex;flex-direction:column;gap:2px;color:var(--muted)}
+.rules-cites a{color:var(--accent)}
+.rules-caveat{color:var(--muted)}
+tr[data-bar="crit"]{box-shadow:inset 3px 0 0 var(--crit)}
+.rules-sev{color:var(--muted);white-space:nowrap}
+.rules-run .ui-verified{white-space:normal}
+.rules-changed .sec-h{margin-bottom:var(--space-3)}
+.rules-changed td p{margin:var(--space-1) 0 0}
+.rules-disc{max-width:60ch}
+.rules-disc p{margin:0}
+.rules-disc p,.rules-changed td p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+[data-testid="home-tiles"] .v{font-variant-numeric:lining-nums}
+.mem-list .mem-signal{max-width:0;width:100%;min-width:180px}

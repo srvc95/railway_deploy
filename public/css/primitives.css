@@ -1,0 +1,108 @@
+/* Design-system layer (public/ui/primitives.js). Tokens only: no literal colours, no new fonts. Reuses the shell classes (.card .pad .sec-h .pill .chip .btn .badge .tbl-wrap).
+   Type scale (tokens.css): 11.5 labels and pills, 12.5 meta, 13 cells, 14 body, 16 card title, 20 stat value, 26 page title. Nothing smaller than 11.5.
+   Badge rule: at most one layer badge per card header, right-aligned (secHead enforces it). Money and figures: tabular numerals in the body face, never monospace.
+   GREEN RULE (change cosmetic-and-oncall, D6): green is only the 14 px icon colour of a passed or verified check (.ui-verified-ic) and the fill of a transient toast. Never a box background,
+   card border, row bar or decorative pill. A lasting result is verified(), not a green callout. Red means an unresolved error or block, never an expected change. */
+
+/* ---- figures ---- */
+.ui-num{font-variant-numeric:tabular-nums lining-nums;font-family:var(--body)}
+td.ui-num,th.r{text-align:right}
+
+/* ---- stat row ---- */
+.ui-stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-3) var(--space-4);padding:var(--space-3) var(--space-4);background:var(--sunk);border-radius:var(--r-inner)}
+/* four figures sit in one row or two rows of two, never three plus one alone (low specificity: a page that sets its own columns keeps them) */
+.ui-stat-row:where([data-count="4"]){grid-template-columns:repeat(auto-fit,minmax(clamp(calc(25% - var(--space-4)),calc((600px + 3 * var(--space-4) - 100%) * 999),calc(50% - var(--space-4))),1fr))}
+.ui-stat{display:flex;flex-direction:column;gap:2px;min-width:0}
+/* label, value and sub line share rows across the stat row, so a label that wraps does not push its value below the others */
+@supports (grid-template-rows:subgrid){.ui-stat{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:2px;align-content:start}.ui-stat-l{align-self:end}}
+.ui-stat-l{font-size:var(--text-label);font-weight:500;color:var(--muted)}
+/* the one stat value: display face, --text-stat, lining proportional figures (a tabular colon sets "10:00 AM" as "10 : 00 AM"). One small variant; no page overrides. */
+.ui-stat-v{font:600 var(--text-stat)/1.25 var(--display);letter-spacing:-.01em;font-variant-numeric:lining-nums proportional-nums;overflow-wrap:anywhere}
+/* the one small variant: asked with data-size="sm" (statRow(items, { size: 'sm' })); the Why sheet, the audit counts and the compliance block ask for it */
+.ui-stat-row[data-size="sm"] .ui-stat-v{font-size:var(--text-stat-sm)}
+.ui-stat-sub{font-size:var(--text-meta);color:var(--muted)}
+
+/* ---- fact list ---- */
+.ui-facts{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:0}
+.ui-fact{display:grid;grid-template-columns:minmax(120px,38%) minmax(0,1fr);gap:var(--space-3);padding:var(--space-2) 0;border-top:1px solid var(--line)}
+.ui-fact:first-child{border-top:0}
+.ui-fact dt{font-size:var(--text-meta);color:var(--muted)}
+.ui-fact dd{margin:0;font-weight:500;font-variant-numeric:tabular-nums lining-nums;overflow-wrap:anywhere}
+.ui-fact-note{display:block;font-size:var(--text-meta);font-weight:400;color:var(--muted)}
+@media (min-width:1280px){ .ui-facts{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--space-6)} .ui-fact:nth-child(2){border-top:0} }
+.ui-more{margin-top:var(--space-2)}
+.ui-more summary{cursor:pointer;font-weight:600;font-size:var(--text-meta);color:var(--accent);padding:var(--space-1) 0;width:max-content;border-radius:var(--r-pill)}
+.ui-more .ui-more-open,.ui-more[open] .ui-more-closed{display:none}
+.ui-more[open] .ui-more-open{display:inline}
+
+/* ---- key-value grid ---- */
+.ui-kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-3) var(--space-4);margin:0}
+.ui-kv div{min-width:0}
+.ui-kv dt{font-size:var(--text-label);font-weight:500;color:var(--muted)}
+.ui-kv dd{margin:0;font-weight:500;overflow-wrap:anywhere}
+
+/* ---- identifier: every hash, rule id and decision id. One face, never broken inside the token ---- */
+code.ui-id,code.rule-id{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted);background:none;padding:0;white-space:nowrap;overflow-wrap:normal;word-break:normal;hyphens:none}
+
+/* ---- verified: a lasting check result. A 14 px icon, the label, an optional identifier. Only a passed check is green ---- */
+.ui-verified{display:inline-flex;align-items:center;flex-wrap:wrap;gap:var(--space-1) 6px;font-size:var(--text-cell);font-weight:500;color:var(--ink)}
+.ui-verified-ic{flex:none;display:inline-grid;place-items:center;width:14px;height:14px;color:var(--muted)}
+.ui-verified-ic svg{width:14px;height:14px;display:block}
+.ui-verified[data-state="verified"] .ui-verified-ic{color:var(--good)}
+.ui-verified[data-state="mismatch"] .ui-verified-ic{color:var(--crit)}
+.ui-verified[data-state="na"] .ui-verified-ic{color:var(--faint)}
+
+/* ---- sheet header: shared by the Why sheet and the audit report sheet ---- */
+.ui-sheet-head{flex:none;display:flex;justify-content:space-between;align-items:flex-start;gap:var(--space-3);padding:var(--space-4) var(--space-5) var(--space-3)}
+.ui-sheet-main{min-width:0;display:flex;flex-direction:column;gap:var(--space-1)}
+.ui-sheet-eyebrow{margin:0;font-size:var(--text-label);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ui-sheet-title{margin:0;font:600 var(--text-stat)/1.25 var(--display);letter-spacing:-.01em;overflow-wrap:anywhere}
+.ui-sheet-head .ui-prov{margin-top:2px}
+
+/* ---- provenance ---- */
+.ui-prov{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap;margin:0}
+
+/* ---- callout ---- */
+.ui-callout{display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-3) var(--space-4);border-radius:var(--r-inner);border-left:3px solid var(--tone-info);background:var(--tone-info-soft);color:var(--ink);font-size:var(--text-body)}
+.ui-callout-ic{flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font:700 11.5px/1 var(--body);color:var(--on-accent);background:var(--tone-info);margin-top:1px}
+.ui-callout-t{flex:1;min-width:0}
+.ui-callout-r{flex:none;margin-left:auto}
+.ui-callout-good{border-left-color:var(--tone-good);background:var(--tone-good-soft)} .ui-callout-good .ui-callout-ic{background:var(--tone-good)}
+.ui-callout-warn{border-left-color:var(--tone-warn);background:var(--tone-warn-soft)} .ui-callout-warn .ui-callout-ic{background:var(--tone-warn)}
+.ui-callout-block{border-left-color:var(--tone-block);background:var(--tone-block-soft)} .ui-callout-block .ui-callout-ic{background:var(--tone-block)}
+
+/* ---- table (shell style plus a focusable scroller) ---- */
+.ui-table:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+.ui-table td.ui-num{white-space:nowrap}
+.tbl-wrap tbody tr:last-child>th{border-bottom:0}
+
+/* ---- empty, loading, error ---- */
+.ui-state{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2);padding:var(--space-5) var(--space-4);border:1px dashed var(--line);border-radius:var(--r-inner);background:var(--sunk)}
+.ui-state b{font:600 var(--text-title) var(--display)}
+.ui-state[data-state="empty"]{padding:0;gap:var(--space-1);border:0;background:none}
+.ui-state[data-state="empty"] b{font:500 var(--text-body)/1.4 var(--body);color:var(--muted)}
+.ui-state-error{border-style:solid;border-color:var(--tone-block);background:var(--tone-block-soft)}
+.ui-skel{gap:var(--space-3);border-style:solid}
+.ui-skel-line{display:block;height:12px;border-radius:var(--r-pill);background:var(--line);width:100%;animation:ui-shimmer 1.4s ease-in-out infinite}
+.ui-skel-line:nth-of-type(2n){width:88%} .ui-skel-line:last-of-type{width:55%}
+@keyframes ui-shimmer{0%,100%{opacity:.55}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.ui-skel-line{animation:none}}
+
+/* ---- buttons: one primary per group; ghost and secondary otherwise. Links styled as buttons carry no underline ---- */
+a.btn{text-decoration:none}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.btn:focus-visible,.ui-more summary:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+.ui-actions{display:flex;gap:var(--space-2);flex-wrap:wrap;align-items:center}
+
+/* ---- style page (?ui=1) ---- */
+.ui-guide{display:block;min-height:100vh;background:var(--bg);color:var(--ink)}
+.ui-guide-wrap{gap:var(--space-5)}
+.ui-guide-card{display:flex;flex-direction:column;gap:var(--space-3)}
+.ui-guide-card .sec-h{margin-bottom:0}
+.ui-guide-intro{max-width:70ch}
+.ui-sample{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.ui-sample-l{font-size:var(--text-label);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ui-guide-states{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-4)}
+.ui-rules{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:var(--space-1)}
+.ui-guide code{font-family:var(--mono);font-size:12.5px}
+.ic-check{width:1em;height:1em;flex:none;vertical-align:-.125em}

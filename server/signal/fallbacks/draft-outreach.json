@@ -1,0 +1,75 @@
+{
+  "fallback": true,
+  "fictional": true,
+  "role": "draft",
+  "step": "action.draft",
+  "forInput": "DEC-recommendation-hayes-2027",
+  "result": {
+    "id": "draft-ai-1",
+    "channel": "email",
+    "to": "dottie.hayes@example.com",
+    "subject": "Your 2027 Medicare plan options in Lorain County",
+    "body": "Dear Dottie,\n\nThank you for your message. Your current plan, Northlake Advantage Plus (HMO), will not be offered in Lorain County after December 31, 2026, and you have until December 7 to choose a plan for 2027 during the annual enrollment period.\n\nBased on what you told us, Northlake Choice (PPO) may fit your needs. It keeps Dr. Brennan, Dr. Sullivan and North Coast Regional Medical Center in its network. The monthly premium is $18.00, within the $30 you mentioned. All four of your current prescriptions are on its 2027 drug list, with copays from $0 to $47 for a 30-day supply. Jardiance needs prior authorization, and I can help you start that request.\n\nI would be glad to go over your options by phone or email, whichever you prefer.\n\nJordan Mitchell\nLicensed Agent, Northlake Health Plan",
+    "claims": [
+      {
+        "text": "Northlake Advantage Plus (HMO), will not be offered in Lorain County after December 31, 2026",
+        "factIds": [
+          "fact:nonrenewal:H9701-004"
+        ]
+      },
+      {
+        "text": "you have until December 7 to choose a plan for 2027 during the annual enrollment period",
+        "factIds": [
+          "fact:election:ep-aep"
+        ]
+      },
+      {
+        "text": "It keeps Dr. Brennan, Dr. Sullivan and North Coast Regional Medical Center in its network",
+        "factIds": [
+          "fact:network:H9701-011:prov-brennan",
+          "fact:network:H9701-011:prov-sullivan",
+          "fact:network:H9701-011:fac-avmc"
+        ]
+      },
+      {
+        "text": "The monthly premium is $18.00",
+        "factIds": [
+          "fact:premium:H9701-011"
+        ]
+      },
+      {
+        "text": "within the $30 you mentioned",
+        "factIds": [
+          "fact:pref:max-premium"
+        ]
+      },
+      {
+        "text": "All four of your current prescriptions are on its 2027 drug list, with copays from $0 to $47 for a 30-day supply",
+        "factIds": [
+          "fact:formulary:H9701-011:drug-eliquis",
+          "fact:formulary:H9701-011:drug-jardiance",
+          "fact:formulary:H9701-011:drug-atorvastatin",
+          "fact:formulary:H9701-011:drug-metformin-er",
+          "fact:copay:H9701-011:drug-eliquis",
+          "fact:copay:H9701-011:drug-jardiance",
+          "fact:copay:H9701-011:drug-atorvastatin",
+          "fact:copay:H9701-011:drug-metformin-er"
+        ]
+      },
+      {
+        "text": "Jardiance needs prior authorization",
+        "factIds": [
+          "fact:priorauth:H9701-011:drug-jardiance"
+        ]
+      }
+    ],
+    "author": {
+      "kind": "llm",
+      "id": "fallback"
+    },
+    "createdAt": "2026-10-20T10:00:00-04:00",
+    "attachments": [
+      "comparison-H9701-011.html"
+    ]
+  }
+}

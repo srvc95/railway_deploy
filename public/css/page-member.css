@@ -1,0 +1,159 @@
+/* Home, Members and Member detail (change adopt-keel-shell, WP S4; polished in change polish-and-realism, task 7). Page-specific layout only, prefix mem-. The look comes from keel.css
+   (.card .sig .tbl-wrap .tabs .tree ...) and primitives.css (.ui-stat-row .ui-facts .ui-state .ui-callout); colours come from tokens.css only. No page file restyles a shared class. */
+
+.mem-strong{font-weight:600;margin:0 0 var(--space-2)}
+.mem-empty{color:var(--muted)}
+.mem-logo{width:46px;height:46px;font-size:15px}
+/* the header and the tabs are one block, so the step body can start inside the first screen: back link above the name, no separate rows */
+.mem-head{display:flex;flex-direction:column;gap:var(--space-2)}
+.mem-head .top{align-items:center}
+.mem-id{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.mem-id .back{margin-bottom:2px}
+.mem-id p{margin:0}
+
+/* Overview: the facets of the old dossier, a wide column and a narrow one */
+.mem-overview{gap:var(--space-4)}
+.mem-overview .col{gap:var(--space-4)}
+.mem-facet{display:flex;flex-direction:column;min-width:0}
+.mem-facet .sec-h{margin-bottom:var(--space-3)}
+.mem-facet .sec-h h3{font-size:var(--text-title)}
+.mem-facet p{margin:0 0 6px}
+ul.mem-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.mem-list>li{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mem-list>li>span:first-child{min-width:0;flex:1 1 auto}
+.mem-list>li>.pill,.mem-list>li>.chip{flex:none}
+.mem-prior{margin-top:var(--space-3)}
+.mem-status .sec-h{margin-bottom:var(--space-2)}
+/* fact lists sit in cards narrower than the viewport rule of primitives.css assumes: one column, rules kept between the rows */
+.mem-facet .ui-facts,.mem-rec .ui-facts{grid-template-columns:minmax(0,1fr)}
+.mem-facet .ui-fact:nth-child(2),.mem-rec .ui-fact:nth-child(2){border-top:1px solid var(--line)}
+.mem-facet .ui-fact{grid-template-columns:minmax(110px,34%) minmax(0,1fr)}
+.mem-facet .ui-fact-note{font-weight:400}
+.mem-prior .ui-fact{padding:var(--space-1) 0}
+
+/* recommendation card: the plan, four figures, why it fits, the plans checked */
+.mem-rec{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.mem-rec .sec-h{margin-bottom:0}
+.mem-rec .sec-h h3{font-size:var(--text-body);color:var(--accent)}
+.mem-rec-plan{font:600 20px var(--display);letter-spacing:-.01em;margin:0}
+.mem-rec-sub{margin:0 0 var(--space-1)}
+.mem-rec .ui-stat-row{background:var(--panel);grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-3)}
+.mem-rec-h{font:600 var(--text-label) var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:var(--space-3) 0 0}
+.mem-rec .tbl-wrap{background:var(--panel);border-radius:var(--r-inner)}
+.mem-rec table{font-size:var(--text-cell)}
+.mem-rec th,.mem-rec td{padding:8px 10px;vertical-align:top}
+.mem-rec thead th{white-space:nowrap}
+.mem-cand-out th,.mem-cand-out td{color:var(--muted)}
+.mem-rec-act{margin-top:var(--space-2)}
+.mem-allfacts{font-size:var(--text-meta);margin:0}
+.mem-allfacts summary{cursor:pointer;color:var(--accent);font-weight:600;width:max-content;border-radius:var(--r-pill)}
+.mem-allfacts summary:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+.mem-reasons{margin:var(--space-2) 0 0;padding-left:18px;display:flex;flex-direction:column;gap:3px;font-size:var(--text-cell)}
+
+/* Coverage checks: the matrices */
+.mem-coverage{display:flex;flex-direction:column;gap:var(--space-5)}
+.mem-matrix-card{overflow:hidden}
+.mem-matrix-card>.sec-h,.mem-matrix-head{margin:0;padding:var(--space-4) var(--space-4) var(--space-3)}
+.mem-matrix{table-layout:auto}
+.mem-matrix th,.mem-matrix td{padding:9px 10px;vertical-align:top}
+.mem-matrix tbody th{text-align:left;text-transform:none;letter-spacing:0;font:inherit;font-size:var(--text-cell);color:var(--ink);white-space:normal;min-width:150px}
+.mem-matrix thead th{white-space:normal;min-width:96px;text-transform:none;letter-spacing:0;font-size:var(--text-meta)}
+.mem-cell{font-size:var(--text-cell);min-width:96px}
+.mem-no{color:var(--crit);font-weight:500}
+.mem-rulecell{min-width:170px;font-size:var(--text-meta)}
+.mem-rulecell .small{margin-top:4px}
+
+/* Communications */
+.mem-vm{margin:6px 0 0;padding-left:12px;border-left:2px solid var(--line);color:var(--muted);max-width:66ch}
+.mem-outreach-bar{margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.news .sig-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* a Communications row has no date column: the date sits once, in its meta line */
+[data-testid="comms"] .news{grid-template-columns:minmax(0,1fr)}
+
+/* Workflow: one stepper card above the stage and the timeline */
+.mem-workflow{display:flex;flex-direction:column;gap:var(--space-4)}
+.mem-stepper{padding:10px var(--space-4);display:flex;flex-direction:column;gap:var(--space-2)}
+.mem-step-head{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap}
+.mem-now{margin:0;font-size:var(--text-body)}
+.mem-step-head .sp{margin-left:auto;display:flex;gap:var(--space-2)}
+.mem-step-head .btn{padding-top:3px;padding-bottom:3px}
+.mem-rail{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.mem-layer{display:flex;flex-direction:column;gap:var(--space-1);min-width:0}
+.mem-layer+.mem-layer{border-left:1px solid var(--line);padding-left:var(--space-2)}
+.mem-layer-head{display:flex;align-items:center;gap:6px;min-height:20px}
+.mem-layer-name{font-size:var(--text-label);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mem-layer-head .badge{font-size:var(--text-label);padding:0 7px}
+.mem-layer-steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-1)}
+.mem-step-btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:36px;height:var(--target);padding:0 5px;border:1px solid var(--line);border-radius:var(--r-inner);background:var(--panel);color:var(--ink);font-size:var(--text-meta);font-variant-numeric:tabular-nums}
+.mem-step-btn:disabled{cursor:default;color:var(--faint);background:var(--sunk)}
+.mem-step-btn:not(:disabled):hover{border-color:var(--accent)}
+.mem-step-btn:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+.mem-step-ic{font-size:var(--text-label);line-height:1;color:var(--faint)}
+.mem-step-n{font-weight:500}
+.mem-step[data-state="done"] .mem-step-ic{color:var(--ink)}
+.mem-step[data-state="current"] .mem-step-btn{border-color:var(--accent);background:var(--accent-soft)}
+.mem-step[data-state="current"] .mem-step-ic{color:var(--accent)}
+.mem-step[data-state="waiting"] .mem-step-btn{border-color:var(--warn);background:var(--warn-soft)}
+.mem-step[data-state="waiting"] .mem-step-ic{color:var(--warn)}
+.mem-step.is-view .mem-step-btn{border-color:var(--ink);box-shadow:var(--shadow)}
+.mem-stage{min-width:0}
+
+/* Run timeline: actor dot and word, tabular times, a fade and a count when it is clipped */
+.mem-tl-card{display:flex;flex-direction:column;min-height:0;position:relative}
+.mem-tl-card .sec-h{margin-bottom:var(--space-2)}
+.mem-tl-more{position:relative;margin:0;z-index:var(--z-raised);background:var(--panel)}
+.mem-tl-more:not([hidden])::after{content:"";position:absolute;left:0;right:0;top:100%;height:20px;background:linear-gradient(var(--panel),transparent);pointer-events:none}
+/* the list shows whole rows (member.js settleTimeline), so nothing fades: is-clipped only says that earlier rows exist above */
+.mem-tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;overflow-y:auto;max-height:min(520px,calc(100vh - 360px));scroll-snap-type:y proximity}
+.mem-tl li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;align-items:center;padding:var(--space-2) 0;border-top:1px solid var(--line);font-size:var(--text-cell)}
+.mem-tl li:first-child{border-top:0}
+.mem-tl li{scroll-snap-align:start}
+.mem-tl time{font:500 var(--text-meta) var(--body);font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.mem-who{display:inline-flex;align-items:center;gap:6px;font-size:var(--text-label);font-weight:600;letter-spacing:.04em;color:var(--muted)}
+.mem-dot{width:6px;height:6px;border-radius:50%;background:var(--layer-system);flex:none}
+.mem-dot-ai{background:var(--layer-ai)} .mem-dot-data{background:var(--layer-data)} .mem-dot-rules{background:var(--layer-rules)} .mem-dot-human{background:var(--layer-human)} .mem-dot-system{background:var(--layer-system)}
+.mem-tl-text{grid-column:1/-1;min-width:0;overflow-wrap:anywhere}
+
+@media (max-width:760px){
+  .mem-layer+.mem-layer{border-left:0;padding-left:0}
+}
+
+/* Relationships chart: the member at the top, her links as columns, the plans offered in her county side by side, each plan with its network, drug list and checks */
+.mem-reltree{padding-top:0}
+.mem-reltree>ul>li>ul{align-items:flex-start}
+.mem-reltree .person{width:104px;padding:7px 8px}
+.mem-reltree .mem-relhead{align-items:flex-start;border-style:dashed}
+.mem-reltree ul.mem-relstack{flex-direction:column;align-items:center;gap:10px;padding:20px 0 0}
+.mem-reltree .mem-relstack>li{padding:0;align-items:center}
+.mem-reltree .mem-relstack>li::before,.mem-reltree .mem-relstack>li::after{display:none}
+.mem-reltree .mem-relstack>li+li::before{display:block;content:"";position:absolute;left:50%;right:auto;top:-10px;width:0;height:10px;border:0;border-left:1px solid var(--faint)}
+.mem-reltree ul.mem-relgrid{display:grid;grid-template-columns:repeat(3,156px);justify-items:center;align-items:start;gap:8px}
+.mem-reltree .mem-relgrid>li+li::before{display:none}
+.mem-relplan{width:156px;min-width:0}
+.mem-relplan .person{width:100%}
+.mem-relplan-rows{box-sizing:border-box;width:100%;min-width:0;display:flex;flex-direction:column;gap:4px;margin-top:4px;padding:6px 8px;border:1px solid var(--line);border-radius:var(--r-inner);background:var(--panel)}
+.mem-relplan-rows>div{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.mem-relplan-rows>.mem-relrules{flex-direction:column;align-items:flex-start;gap:2px}
+.mem-relrules>div{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.mem-ruleline{display:flex;gap:4px;align-items:baseline;font-size:var(--text-label);line-height:1.35;color:var(--muted)}
+.mem-relchip{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:inherit;font-size:var(--text-label);line-height:1.3;padding:1px 7px;border:1px solid var(--line);border-radius:var(--r-chip);background:var(--panel);color:var(--ink);text-align:left}
+.mem-relchip:hover,.mem-relchip[aria-pressed="true"]{border-color:var(--accent)}
+.mem-reldetail{margin-top:var(--space-3)}
+.mem-reldetail p{margin:0}
+.mem-relrules>.mem-ruleline{flex-wrap:nowrap}
+.mem-relplan-rows{gap:3px;padding:5px 7px}
+.mem-rec tbody th{text-transform:none;letter-spacing:0;font-size:var(--text-cell);font-weight:600;color:var(--ink);text-align:left}
+.mem-rec thead th{font-size:var(--text-label)}
+/* fact lists in the comms and sample-member cards: one column, rules kept between rows; empty and loading states inside a card are plain, not a second box */
+[data-testid="comms"] .ui-facts,[data-testid="sample-member"] .ui-facts{grid-template-columns:minmax(0,1fr)}
+[data-testid="comms"] .ui-fact:nth-child(2),[data-testid="sample-member"] .ui-fact:nth-child(2){border-top:1px solid var(--line)}
+.mem-facet .ui-state{border:0;background:none;padding:0}
+
+/* Home feed: no band under the header, the Live dot is the accent (green is only a verified icon), quiet text links for the older cards */
+.mem-feedhead{margin-bottom:0}
+.feed-live .live{background:var(--accent)}
+.sig-act .link{font-size:var(--text-cell)}
+.sig-act .link.is-quiet{color:var(--muted)}
+td.nowrap .ui-verified,.mem-matrix td .ui-verified{flex-wrap:nowrap;white-space:nowrap}
+/* an empty slot inside a card is plain text, not a second box (one inner box level) */
+.mem-tl-card .ui-state,.stage-empty .ui-state,.cmp-doc .ui-state,.cmp-rail .ui-state,[data-testid="cost-card"] .ui-state,[data-testid="sources-card"] .ui-state,[data-testid="sample-case"] .ui-state,[data-testid="feed"] .ui-state{border:0;background:none;padding:0}

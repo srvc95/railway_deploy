@@ -1,0 +1,70 @@
+/* Design tokens. Base palette and type copied from keel-prototype public/prototype.css (v1.2.3) :root blocks.
+   Layer tokens (--layer-*) are new: every element that belongs to a pipeline layer uses exactly one of them,
+   so the AI / DATA / RULES / HUMAN boundary (email requirement 4) is visible by colour AND by a text badge.
+   Tokens only in this file: no selectors other than :root, no literal colours anywhere else (guard rule ui-css). */
+:root{
+  --bg:#F4F6FA; --panel:#FFFFFF; --side:#E9EDF4; --sunk:#EEF1F6;
+  --ink:#14213A; --muted:#5A6781; --faint:#60697A; --line:#D9DEE8;
+  --navy:#14264A; --on-navy:#F2F5FB;
+  --accent:#2C5BD0; --accent-soft:#E4ECFC; --on-accent:#FFFFFF;
+  --good:#197851; --good-soft:#DEF3E9; --warn:#995D0A; --warn-soft:#FBEED3; --crit:#B93930; --crit-soft:#FBE3E0;
+  --violet:#6A4BD1; --violet-soft:#EAE4FB; --teal:#0B747A; --teal-soft:#DAF1F2; --amber:#A35212; --amber-soft:#FAE8D8;
+  --display:'Schibsted Grotesk','Segoe UI',system-ui,sans-serif;
+  --body:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --r:10px; --shadow:0 1px 2px rgba(20,33,58,.06),0 6px 20px rgba(20,33,58,.05);
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:28px;
+  --radius:14px; --radius-sm:10px; --target:28px;
+  /* pipeline layers */
+  --layer-ai:var(--violet); --layer-ai-soft:var(--violet-soft);
+  --layer-data:var(--teal); --layer-data-soft:var(--teal-soft);
+  --layer-rules:var(--accent); --layer-rules-soft:var(--accent-soft);
+  --layer-human:var(--amber); --layer-human-soft:var(--amber-soft);
+  /* outcome states */
+  --state-pass:var(--good); --state-pass-soft:var(--good-soft);
+  --state-block:var(--crit); --state-block-soft:var(--crit-soft);
+  --state-na:var(--faint); --state-hold:var(--warn); --state-hold-soft:var(--warn-soft);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0D131F; --panel:#151D2C; --side:#101726; --sunk:#1A2334;
+  --ink:#E7ECF5; --muted:#9BA7BF; --faint:#8390A8; --line:#28334A;
+  --navy:#1B2C52; --on-navy:#F2F5FB;
+  --accent:#7EA4FF; --accent-soft:#1B2A4C; --on-accent:#0D131F;
+  --good:#55C795; --good-soft:#133227; --warn:#E5AE4E; --warn-soft:#382B10; --crit:#F0857B; --crit-soft:#3D1B18;
+  --violet:#A893F5; --violet-soft:#261F47; --teal:#4FC4CB; --teal-soft:#0F3033; --amber:#EBA066; --amber-soft:#3A2412;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.25); color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0D131F; --panel:#151D2C; --side:#101726; --sunk:#1A2334;
+  --ink:#E7ECF5; --muted:#9BA7BF; --faint:#8390A8; --line:#28334A;
+  --navy:#1B2C52; --on-navy:#F2F5FB;
+  --accent:#7EA4FF; --accent-soft:#1B2A4C; --on-accent:#0D131F;
+  --good:#55C795; --good-soft:#133227; --warn:#E5AE4E; --warn-soft:#382B10; --crit:#F0857B; --crit-soft:#3D1B18;
+  --violet:#A893F5; --violet-soft:#261F47; --teal:#4FC4CB; --teal-soft:#0F3033; --amber:#EBA066; --amber-soft:#3A2412;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.25); color-scheme:dark }
+:root{
+  /* system steps (no model, no judgement) */
+  --layer-system:var(--muted); --layer-system-soft:var(--sunk);
+  --stage-max:1240px;
+  /* Keel agent colours (copied shell classes .tag.research, .sig-ic.proposal ...): aliases of the base palette, so dark mode follows */
+  --research:var(--teal); --research-soft:var(--teal-soft);
+  --proposal:var(--violet); --proposal-soft:var(--violet-soft);
+  --coach:var(--amber); --coach-soft:var(--amber-soft);
+  --perf:var(--accent); --perf-soft:var(--accent-soft);
+}
+:root{
+  /* design-system layer (css/primitives.css): type scale, radii, one focus ring. Nothing under 11.5px. */
+  --text-label:11.5px; --text-meta:12.5px; --text-cell:13px; --text-body:14px; --text-title:16px; --text-stat:20px; --text-stat-sm:var(--text-title); --text-h1:26px;
+  --r-inner:8px; --r-pill:6px; --r-chip:20px;
+  --ring:2px solid var(--accent); --ring-offset:2px;
+  --tone-info:var(--accent); --tone-info-soft:var(--accent-soft);
+  --tone-good:var(--good); --tone-good-soft:var(--good-soft);
+  --tone-warn:var(--warn); --tone-warn-soft:var(--warn-soft);
+  --tone-block:var(--crit); --tone-block-soft:var(--crit-soft);
+}
+:root{
+  /* the one stacking scale (change cosmetic-and-oncall, design D5): no other CSS file holds a z-index number (tests/unit/ui/z-tokens.test.ts).
+     in-flow 1 < footer note 5 < dock 10 < ask 15, over a record 16 < panel (Why sheet, audit sheet) 20 < tour ring 30, tour popover and Resume chip 31 < toast 40 < run alert 50 */
+  --z-raised:1; --z-note:5; --z-dock:10; --z-ask:15; --z-ask-over:16; --z-panel:20; --z-tour-ring:30; --z-tour:31; --z-toast:40; --z-alert:50;
+  /* the side sheets (the Why sheet and the audit report) */
+  --sheet-w:680px; --sheet-w-sm:560px; --panel-w:0px; /* --panel-w: the width of the panel that is open now; keel.css sets it on body */
+}

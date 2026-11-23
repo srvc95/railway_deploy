@@ -1,0 +1,16 @@
+{
+  "id": "hayes-2027",
+  "title": "Dottie Hayes: plan leaving her county",
+  "fictional": true,
+  "caseId": "CASE-HAYES-2027",
+  "demoNow": "2026-10-20T10:00:00-04:00",
+  "snapshotId": "snap-2026-10-15-py2027",
+  "packId": "pack-2026.2",
+  "beneficiaryId": "ben-hayes",
+  "agentId": "agent-mitchell",
+  "approverId": "agent-sutton",
+  "crmMemberId": "M-0001",
+  "inboundCommunicationId": "comm-voicemail-2026-10-19",
+  "seededRepEditId": "seeded-rep-edit-1",
+  "priorDecisionId": "DEC-2025-1112-HAYES"
+}

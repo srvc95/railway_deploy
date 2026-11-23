@@ -1,0 +1,23 @@
+{
+  "decisionId": "DEC-2025-1112-HAYES",
+  "kind": "plan-recommendation",
+  "caseId": "CASE-HAYES-2026",
+  "asOf": "2025-11-12T10:15:00-05:00",
+  "beneficiaryId": "ben-hayes",
+  "planYear": 2026,
+  "fictional": true,
+  "preferences": {
+    "mustKeepProviderIds": [
+      "prov-brennan",
+      "prov-sullivan"
+    ],
+    "maxPremiumMonthly": 3000,
+    "avoidChannels": [
+      "sms"
+    ],
+    "preferredChannels": [
+      "email",
+      "phone"
+    ]
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "fictional": true,
+  "label": "Synthetic demo data",
+  "members": [
+    {
+      "id": "sample-m-02",
+      "name": "Frances Jennings",
+      "age": 65,
+      "county": "Medina County",
+      "state": "OH",
+      "currentPlanLabel": "No plan yet (new to Medicare)",
+      "situation": "new-to-medicare",
+      "signal": "Turned 65 · asking how to enroll",
+      "lastContactAt": "2026-10-19T15:20:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true,
+      "city": "Medina",
+      "zip": "44256",
+      "mbiDisplay": "••••-•••-WR31"
+    },
+    {
+      "id": "sample-m-03",
+      "name": "Donald Larson",
+      "age": 71,
+      "county": "Cuyahoga County",
+      "state": "OH",
+      "currentPlanLabel": "Out-of-area plan (Pinellas County, FL)",
+      "situation": "moved",
+      "signal": "Moved to Ohio · asking about options",
+      "lastContactAt": "2026-10-18T11:05:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true,
+      "city": "Parma",
+      "zip": "44129",
+      "mbiDisplay": "••••-•••-HD86"
+    },
+    {
+      "id": "sample-m-04",
+      "name": "Barbara Whitman",
+      "age": 69,
+      "county": "Lorain County",
+      "state": "OH",
+      "currentPlanLabel": "Northlake Choice (PPO) H9701-011-000",
+      "situation": "renewing",
+      "signal": "Medicaid application pending",
+      "lastContactAt": "2026-10-17T09:40:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true,
+      "city": "Lorain",
+      "zip": "44052",
+      "mbiDisplay": "••••-•••-PJ19"
+    },
+    {
+      "id": "sample-m-05",
+      "name": "Charles Parker",
+      "age": 73,
+      "county": "Lorain County",
+      "state": "OH",
+      "currentPlanLabel": "Northlake Choice (PPO) H9701-011-000",
+      "situation": "renewing",
+      "signal": "Considering leaving his plan",
+      "lastContactAt": "2026-10-16T16:10:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true,
+      "city": "Avon",
+      "zip": "44011",
+      "mbiDisplay": "••••-•••-CN54"
+    },
+    {
+      "id": "sample-m-06",
+      "name": "Evelyn Foster",
+      "age": 67,
+      "county": "Medina County",
+      "state": "OH",
+      "currentPlanLabel": "Northlake Value (HMO) H9701-015-000",
+      "situation": "renewing",
+      "signal": "Renewing · wants paperwork",
+      "lastContactAt": "2026-10-14T13:30:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true,
+      "city": "Brunswick",
+      "zip": "44212",
+      "mbiDisplay": "••••-•••-GT02"
+    },
+    {
+      "id": "sample-m-07",
+      "name": "George Holloway",
+      "age": 76,
+      "county": "Cuyahoga County",
+      "state": "OH",
+      "currentPlanLabel": "Northlake Rx (PDP) S9701-003-000",
+      "situation": "renewing",
+      "signal": "Asking why drug costs rose",
+      "lastContactAt": "2026-10-19T10:15:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true,
+      "city": "Lakewood",
+      "zip": "44107",
+      "mbiDisplay": "••••-•••-VK47"
+    }
+  ],
+  "cases": [
+    {
+      "id": "sample-case-02",
+      "memberId": "sample-m-02",
+      "title": "Initial enrollment questions",
+      "lane": "new",
+      "updatedAt": "2026-10-19T15:25:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true
+    },
+    {
+      "id": "sample-case-03",
+      "memberId": "sample-m-03",
+      "title": "Options after a move",
+      "lane": "reviewing",
+      "updatedAt": "2026-10-18T11:30:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true
+    },
+    {
+      "id": "sample-case-04",
+      "memberId": "sample-m-04",
+      "title": "Medicaid question during plan review",
+      "lane": "reviewing",
+      "updatedAt": "2026-10-17T10:00:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true
+    },
+    {
+      "id": "sample-case-05",
+      "memberId": "sample-m-05",
+      "title": "Member thinking of leaving",
+      "lane": "outreach",
+      "updatedAt": "2026-10-16T16:30:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true
+    },
+    {
+      "id": "sample-case-06",
+      "memberId": "sample-m-06",
+      "title": "Renewal paperwork",
+      "lane": "follow-up",
+      "updatedAt": "2026-10-14T13:45:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true
+    },
+    {
+      "id": "sample-case-07",
+      "memberId": "sample-m-07",
+      "title": "Drug cost increase",
+      "lane": "new",
+      "updatedAt": "2026-10-19T10:30:00-04:00",
+      "label": "Synthetic demo data",
+      "fictional": true
+    }
+  ]
+}

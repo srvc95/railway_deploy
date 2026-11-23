@@ -1,0 +1,93 @@
+/* Agent Coach (coach-) and Performance & audit (perf-): page-specific layout only (change polish-and-realism, UI6; before: adopt-keel-shell S6).
+   The look comes from keel.css and primitives.css (.card .kpis .tabs .tbl-wrap .coach .deals .chat .bubble .nba .seg .sugg .pill .btn, .ui-stat-row .ui-facts .ui-callout);
+   nothing there is restyled. Tokens only. Figures are tabular numerals in the body face; hashes are the only code-face text. */
+
+/* ---------- Agent Coach ---------- */
+@media (min-width:1081px){ .coach{grid-template-columns:200px minmax(0,1fr) 340px} }
+.coach-root,.perf-page{display:flex;flex-direction:column;gap:20px}
+.coach .chat{min-height:0}
+.coach .chatlog{flex:none;padding:var(--space-4) var(--space-5)}
+.coach .bubble{max-width:100%;font-size:var(--text-body);line-height:1.5}
+.coach .bubble p{margin:0}
+.coach .bubble .src{font-size:var(--text-label);color:var(--faint)}
+.coach-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.coach-head .logo{flex:none}
+.coach-status{margin-left:auto}
+.coach-foot{padding-top:var(--space-3);padding-bottom:var(--space-4);border-top:1px solid var(--line)}
+.coach-sample{margin:var(--space-3) var(--space-3) var(--space-1);font-size:var(--text-label);font-weight:500}
+.deals button:focus-visible,.coach-seg button:focus-visible,.coach .sugg button:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+.coach-col{gap:14px}
+.coach-total{font:600 var(--text-title) var(--display)}
+.coach-meter{margin:0 0 var(--space-3)}
+.coach-meter i{background:var(--accent)}
+.coach-seg{margin:0 0 var(--space-3)}
+.coach-seg button{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.coach-seg button:focus-visible{position:relative}
+.coach-verdict{display:flex;gap:var(--space-2);align-items:center;flex-wrap:wrap;margin:0 0 var(--space-3)}
+.coach-rules{display:flex;flex-direction:column;gap:var(--space-3)}
+.coach-rule{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px var(--space-2);align-items:center}
+.coach-rule + .coach-rule{border-top:1px solid var(--line);padding-top:var(--space-3)}
+.coach-label{font-size:var(--text-cell);font-weight:500;min-width:0;overflow-wrap:anywhere}
+.coach-why{grid-column:1 / -1;margin:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+/* On the call: label and state on one line, the rule ids under them, then what the row holds */
+.coach-check{align-items:center}
+.coach-ids{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-1) var(--space-2)}
+.coach-list{grid-column:1 / -1;margin:var(--space-1) 0 0;padding-left:var(--space-5);display:flex;flex-direction:column;gap:2px;font-size:var(--text-meta);color:var(--muted)}
+.coach-more{grid-column:1 / -1}
+.coach-more summary{cursor:pointer;font-weight:600;font-size:var(--text-meta);color:var(--accent);padding:var(--space-1) 0;width:max-content;border-radius:var(--r-pill)}
+.coach-more summary:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+.coach-terms{margin:var(--space-1) 0 0;font:12px/1.5 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.coach-oncall .sugg{margin-top:var(--space-4);padding-top:var(--space-3);border-top:1px solid var(--line)}
+body[data-guide="on"] .coach-oncall .sugg{display:none}
+.coach-col .ui-prov{margin-bottom:var(--space-3)}
+
+/* ---------- Performance & audit: tiles ---------- */
+.perf-kpis{grid-template-columns:minmax(0,1.7fr) repeat(2,minmax(0,1fr))}
+.perf-cycle{gap:var(--space-3)}
+.perf-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5)}
+.perf-pair > div{display:flex;flex-direction:column;gap:var(--space-1);min-width:0}
+.perf-pair > div + div{border-left:1px solid var(--line);padding-left:var(--space-5)}
+.perf-pair .v{font-size:var(--text-h1);line-height:1.15}
+.perf-pair .d{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.perf-reduction{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap;margin:0;padding-top:var(--space-3);border-top:1px solid var(--line);font-size:var(--text-meta);color:var(--muted)}
+.perf-reduction b{color:var(--ink);font-weight:600}
+@media (max-width:1080px){ .perf-cycle{grid-column:1 / -1} }
+@media (max-width:560px){ .perf-pair{grid-template-columns:minmax(0,1fr)} .perf-pair > div + div{border-left:0;padding-left:0} }
+
+/* ---------- tabs and tables ---------- */
+.perf-body{display:flex;flex-direction:column;gap:14px}
+.perf-name{min-width:200px}
+.perf-out{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.perf-items{display:flex;gap:6px;flex-wrap:wrap}
+.perf-attest{min-width:240px;max-width:46ch;color:var(--muted)}
+.perf-body code{font:12px var(--mono)}
+.perf-body td code{overflow-wrap:anywhere}
+.perf-page a.btn{text-decoration:none}
+
+/* ---------- audit package card ---------- */
+.perf-stats{display:flex;flex-direction:column;gap:var(--space-2);margin:0 0 var(--space-3)}
+.perf-actions{margin:0 0 var(--space-3)}
+.perf-verify{display:flex;flex-direction:column;gap:6px;margin:0 0 var(--space-3)}
+.perf-verify:empty{display:none}
+.perf-manifest{margin:0}
+.perf-manifest code{font:12px var(--mono)}
+.perf-contents{margin:0 0 var(--space-3)}
+.perf-hashes{margin-top:var(--space-3);padding-top:var(--space-3);border-top:1px solid var(--line)}
+.perf-more summary{cursor:pointer;font-weight:600;font-size:var(--text-meta);color:var(--accent);padding:var(--space-1) 0;width:max-content;border-radius:var(--r-pill)}
+.perf-more summary:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+.perf-more[open] summary{margin-bottom:var(--space-2)}
+.perf-base{max-width:520px}
+.perf-base caption{text-align:left}
+.perf-more p{margin:var(--space-2) 0 0;display:flex;gap:var(--space-2);align-items:center;flex-wrap:wrap}
+
+/* ---------- report preview (side sheet) ---------- */
+#audit-sheet{position:fixed;top:0;right:0;bottom:0;z-index:var(--z-panel);width:min(var(--sheet-w-sm),100vw);background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);font-variant-numeric:tabular-nums lining-nums}
+#audit-sheet[hidden]{display:none}
+.perf-sheet{display:flex;flex-direction:column;height:100%;min-height:0}
+.perf-counts{flex:none;padding:0 var(--space-5) var(--space-3)}
+.perf-counts .ui-stat-row{grid-template-columns:repeat(3,minmax(0,1fr));padding:var(--space-2) var(--space-3);gap:var(--space-2) var(--space-3)}
+.perf-frame{flex:1 1 auto;min-height:0;width:100%;border:0;border-top:1px solid var(--line);background:var(--panel)}
+#audit-sheet :is(button,a,iframe):focus-visible{outline:var(--ring);outline-offset:calc(var(--ring-offset) * -1)}
+
+/* ---------- replay card ---------- */
+.perf-replay .sec-h{margin-bottom:var(--space-3)}

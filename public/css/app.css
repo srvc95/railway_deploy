@@ -1,0 +1,209 @@
+/* Governed components of the Keel shell (change adopt-keel-shell, tasks 5.1 and 5.2): the Why sheet (why-), the comparison document and the compliance
+   block view (cmp-), the approval card (appr-) and the Workflow step bodies (stage-). Colours come only from tokens.css; shared Keel classes (.card .pill .chip
+   .btn .tag .badge .sec-h .check .ck .docgrid .doc .rev .board .tbl-wrap) are used as they are and not restyled here. The old single-screen layout rules are gone. */
+
+/* ---------- small shared pieces of the governed views ---------- */
+:is(.cmp-view, .cmp-foot, .cmp-changes, .stage-card, .why-replay, .appr) del{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--crit);background:var(--crit-soft)}
+:is(.cmp-view, .cmp-foot, .cmp-changes, .stage-card, .why-replay, .appr) ins{text-decoration:underline;text-decoration-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+.why-replay ins{text-decoration:none;font-weight:600}
+.cmp-rule-id,#why-sheet code{font-family:var(--mono);font-size:.92em}
+.cmp-row,.why-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.stage-eyebrow,.cmp-eyebrow,.why-eyebrow{font-size:var(--text-label);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.stage-spinner{display:inline-block;width:14px;height:14px;margin-right:8px;vertical-align:-2px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--layer-ai);animation:stage-spin .9s linear infinite}
+@keyframes stage-spin{to{transform:rotate(360deg)}}
+@keyframes stage-shimmer{0%{opacity:.55}50%{opacity:1}100%{opacity:.55}}
+@media (prefers-reduced-motion: reduce){.stage-spinner{animation:none;border-right-color:var(--layer-ai)}.stage-skeleton i{animation:none}}
+
+/* row headers of the governed tables read as text, not as the small grey column heads of the shared table style */
+:is(.stage-card, .cmp-doc) tbody th[scope=row]{font:500 13px/1.4 var(--body);letter-spacing:0;text-transform:none;color:var(--ink);white-space:normal;padding:11px 14px}
+.stage-result{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;font-weight:400}
+:is(.stage-card, .cmp-doc) .tbl-wrap:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- Plan comparisons: board and document ---------- */
+.board.cmp-board{grid-template-columns:repeat(4,minmax(190px,1fr))}
+.pcard{color:inherit}
+.cmp-how{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));padding:0;margin:0;list-style:none}
+.cmp-how li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start}
+.cmp-how-badge{padding-top:2px}
+.cmp-doc{min-width:0}
+.cmp-doc > header .small{overflow-wrap:anywhere}
+.cmp-heard,.cmp-claim-list,.cmp-changes,.stage-list,.stage-reasons,.appr-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.cmp-heard li{display:flex;flex-direction:column}
+.cmp-changes li{padding-left:12px;border-left:2px solid var(--line);overflow-wrap:anywhere}
+.cmp-claims{margin-top:8px}
+.cmp-claims summary,.cmp-unchanged summary,.stage-calc summary,.appr-read summary,#why-sheet summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.cmp-claim-list{margin-top:8px}
+.cmp-doc-foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding-top:14px;border-top:1px solid var(--line)}
+.cmp-rail .check{gap:10px}
+.cmp-rail .check > div[data-rule]{align-items:start}
+.cmp-rail-sub,.cmp-na,.cmp-after,.cmp-hashes{margin-top:8px}
+.cmp-calc{padding:8px 0;border-top:1px solid var(--line)}
+.cmp-calc:first-of-type{border-top:0;padding-top:0}
+.cmp-calc-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.cmp-calc-lines{margin:4px 0 0}
+.cmp-calc-lines>div{padding:3px 0}
+.cmp-calc-lines dt{margin:0}
+.cmp-calc-lines dd{margin:0;overflow-wrap:anywhere}
+.cmp-calc p{overflow-wrap:anywhere}
+.cmp-editor{display:grid;gap:8px;padding:12px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);margin-top:8px}
+.cmp-editor label{display:grid;gap:4px;font-weight:600}
+.cmp-editor textarea,.cmp-editor select{border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--panel);color:var(--ink);width:100%;font:inherit;font-weight:400}
+
+/* ---------- compliance block view ---------- */
+.cmp-view{display:flex;flex-direction:column;gap:12px;border:1px solid var(--crit);border-radius:var(--r);padding:12px;background:var(--panel)}
+.cmp-banner{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:12px 14px;border-radius:var(--r);background:var(--crit-soft);border:1px solid var(--crit)}
+.cmp-banner h3{font-size:18px;margin:0 0 4px}
+.cmp-flow{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.cmp-flow li{padding:2px 12px;border-radius:20px;background:var(--sunk);color:var(--muted);font-weight:600}
+.cmp-flow li.is-done{background:var(--good-soft);color:var(--ink)}
+.cmp-flow li:first-child{background:var(--crit-soft);color:var(--ink)}
+.cmp-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px;align-items:start}
+.cmp-msg,.cmp-viols{min-width:0}
+.cmp-msg h4,.cmp-viols h4,.appr-body h4,.stage-grp h4,.why-side h4,.why-replay h4{font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:0 0 6px}
+.cmp-viols{display:flex;flex-direction:column;gap:8px}
+.cmp-viol{padding:8px 12px;border:1px solid var(--crit);border-left-width:4px;border-radius:var(--r);background:var(--panel)}
+.cmp-viol header{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}
+.cmp-cite,.why-cite{color:var(--muted);font-size:12px;margin-top:2px}
+.cmp-hit{background:var(--crit-soft);border-radius:4px;padding:0 2px}
+.cmp-tags{display:inline-flex;gap:3px;margin-left:4px;vertical-align:top}
+.cmp-tag{font-family:var(--mono);font-size:var(--text-label);padding:0 4px;border-radius:4px;border:1px solid var(--crit);background:var(--panel);color:var(--ink)}
+.cmp-unchanged{margin:0 0 8px;color:var(--muted)}
+.cmp-unchanged .stage-body{color:var(--muted)}
+.cmp-foot{display:grid;gap:4px}
+.cmp-foot p{overflow-wrap:anywhere}
+
+/* ---------- approval card ---------- */
+.appr{display:grid;gap:12px;border-color:var(--layer-human)}
+.appr-head{display:flex;align-items:center;gap:12px}
+.appr-head h3{font-size:16px}
+.appr-av{background:var(--layer-human-soft);color:var(--ink)}
+.appr-attest,.appr-wait{padding:8px 12px;background:var(--layer-human-soft);border-radius:var(--r)}
+.appr-actions{display:flex;flex-wrap:wrap;gap:8px}
+.appr-verdict{padding:8px 12px;border-radius:var(--r);border:1px solid var(--line)}
+.appr-verdict.is-ok{border-color:var(--good);background:var(--good-soft)}
+.appr-verdict.is-no{border-color:var(--crit);background:var(--crit-soft)}
+.appr-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.appr-list li{overflow-wrap:anywhere}
+
+/* ---------- Workflow step bodies ---------- */
+.stage-card{min-width:0;display:flex;flex-direction:column;gap:var(--space-4)}
+.stage-card>*{min-width:0}
+.stage-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-2) var(--space-4);flex-wrap:wrap}
+.stage-head-l{min-width:0;display:flex;flex-direction:column;gap:2px}
+.stage-step{margin:0;font-size:var(--text-meta);color:var(--muted)}
+.stage-title{font-size:20px;font-weight:600;line-height:1.25}
+.stage-head .ui-prov{padding-top:3px;max-width:100%}
+.stage-llm{font-weight:500;color:var(--muted)}
+.stage-llm.is-fallback{font-weight:600;color:var(--warn)}
+.stage-kicker{margin:0 0 2px;font-size:var(--text-label);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.stage-sub{display:block;font-size:var(--text-meta);font-weight:400;color:var(--muted);margin:0}
+.stage-block{min-width:0}
+.stage-block>.sec-h{margin-bottom:var(--space-2)}
+.stage-block>.sec-h h3{font-size:var(--text-title)}
+.stage-block>.sec-h h4,.stage-fits>.sec-h h4,.stage-checked>.sec-h h4{font-size:var(--text-body);font-weight:600}
+.stage-fits>.sec-h,.stage-checked>.sec-h{margin-bottom:var(--space-1)}
+.stage-fold{border-top:1px solid var(--line);padding-top:var(--space-2)}
+.stage-fold summary{cursor:pointer;font-weight:600;font-size:var(--text-meta);color:var(--accent);width:max-content;max-width:100%;border-radius:var(--r-pill)}
+.stage-fold summary:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+.stage-fold-body{padding-top:var(--space-2)}
+.stage-fold-body .ui-facts{grid-template-columns:minmax(0,1fr)}
+.stage-link{font:inherit;font-size:var(--text-meta);font-weight:600;color:var(--accent);background:none;border:0;padding:0;cursor:pointer;text-decoration:none;border-radius:var(--r-pill)}
+.stage-link:hover{text-decoration:underline}
+.stage-link:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+
+/* figures inside a step card: four across at the stage width, body face so the thousands comma sits tight */
+.stage-card .ui-stat-row{grid-template-columns:repeat(auto-fit,minmax(128px,1fr))}
+.stage-card .ui-fact{grid-template-columns:minmax(88px,30%) minmax(0,1fr)}
+
+/* progress while a live call runs: a spinner, a label and skeleton lines */
+.stage-progress{padding:var(--space-3) 0}
+.stage-progress-line{display:flex;align-items:center;gap:var(--space-1)}
+.stage-skeleton{display:grid;gap:var(--space-2);margin-top:var(--space-3)}
+.stage-skeleton i{display:block;height:12px;border-radius:var(--r-pill);background:var(--line);animation:stage-shimmer 1.4s ease-in-out infinite}
+.stage-skeleton i:nth-child(2){width:82%}.stage-skeleton i:nth-child(3){width:64%}
+
+/* reading a message */
+.stage-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:var(--space-5);align-items:start}
+.stage-transcript{white-space:pre-wrap;line-height:1.7;margin:0}
+mark.stage-quote-mark{background:var(--layer-ai-soft);color:var(--ink);padding:0 2px;border-radius:3px}
+.stage-quote{display:block;margin-top:2px;padding-left:8px;border-left:3px solid var(--layer-ai);color:var(--muted);font-style:italic}
+.stage-words{color:var(--muted);font-style:italic}
+.stage-notkept{margin-top:var(--space-3);color:var(--muted)}
+.stage-notkept .stage-sub{font-weight:600;margin-bottom:2px}
+.stage-notkept .stage-list{font-size:var(--text-meta)}
+.stage-chips{display:inline-flex;flex-wrap:wrap;gap:var(--space-1)}
+
+/* the plan matrix */
+[data-testid=plan-matrix] thead th{vertical-align:bottom}
+[data-testid=plan-matrix] td{white-space:normal}
+
+/* recommendation */
+.stage-reco{display:flex;flex-direction:column;gap:var(--space-4);min-width:0}
+.stage-reco-top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap}
+.stage-reco-name{font-size:22px;font-weight:600;line-height:1.2}
+.stage-fits,.stage-checked{min-width:0}
+.stage-plan{display:block;font-weight:500}
+tr.stage-best th[scope=row]{box-shadow:inset 3px 0 0 var(--accent)}
+tr.stage-best td,tr.stage-best th{background:var(--accent-soft)}
+tr.is-excluded th,tr.is-excluded td,tr.is-excluded .stage-plan{color:var(--muted)}
+.stage-reason{font-size:var(--text-meta);color:var(--muted);min-width:180px}
+[data-testid=candidates] td:nth-child(4){white-space:nowrap}
+/* compact layout: the plan cell carries the result and the reason, so it wraps (the shell sets every th to nowrap) */
+:is([data-testid=candidates],[data-testid=plans-checked]) tbody th{white-space:normal}
+
+/* message and draft */
+.stage-mail{min-width:0}
+.stage-mail-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;margin:6px 0;padding:6px 10px;background:var(--sunk);border-radius:var(--r-inner)}
+.stage-mail-head dt{color:var(--muted)}
+.stage-mail-head dd{margin:0;overflow-wrap:anywhere}
+.stage-body{white-space:pre-wrap;line-height:1.55;padding:8px 2px;overflow-wrap:anywhere}
+.stage-body.small{font-size:12.5px}
+mark.stage-added{background:var(--warn-soft);color:var(--ink);padding:0 2px}
+.stage-added-body{padding:var(--space-2) var(--space-3);border-left:3px solid var(--warn);background:var(--sunk);border-radius:0 var(--r-inner) var(--r-inner) 0}
+.stage-seed{margin:0;display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.stage-quote-block{margin:0 0 var(--space-2);padding:var(--space-2) var(--space-3);border-left:3px solid var(--layer-rules);background:var(--sunk);border-radius:0 var(--r-inner) var(--r-inner) 0}
+.stage-quote-block p{margin:0 0 4px;line-height:1.5}
+.stage-quote-block footer{font-size:var(--text-meta);color:var(--muted)}
+.stage-msg .stage-body{padding-left:0}
+.stage-topics{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.stage-topics .chip{white-space:normal}
+
+/* execution checklist */
+.stage-ck-list{list-style:none;margin:0;padding:0}
+.stage-ck{display:grid;grid-template-columns:20px minmax(0,1.4fr) minmax(0,1fr) auto;align-items:center;gap:var(--space-3);padding:var(--space-2) var(--space-3);border-top:1px solid var(--line);border-left:3px solid transparent}
+.stage-ck:first-child{border-top:0}
+.stage-ck.is-current{border-left-color:var(--accent);background:var(--sunk)}
+/* a done row is the verified icon (the only green); a waiting row is an empty ring, a running row a spinner */
+.stage-ck-wait,.stage-ck-run{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line);justify-self:center}
+.stage-ck-run{border-color:var(--layer-ai);border-top-color:transparent;animation:stage-spin .9s linear infinite}
+.stage-ck>.ui-verified{justify-self:center}
+.stage-verdict{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap}
+.stage-ck-l{font-weight:500}
+.stage-ck.is-pending .stage-ck-l,.stage-ck.is-waiting .stage-ck-l{color:var(--muted);font-weight:400}
+.stage-ck-a{min-width:0;overflow-wrap:anywhere}
+.stage-ck-t{font-size:var(--text-meta);color:var(--muted);font-variant-numeric:tabular-nums lining-nums;text-align:right;min-width:78px}
+/* in the outreach rail the checklist is one line per row (label and time); the artefact links live on the Workflow tab */
+[data-testid="approval-loop"] .stage-ck{grid-template-columns:20px minmax(0,1fr) auto;padding-block:var(--space-1)}
+[data-testid="approval-loop"] .stage-ck-a{display:none}
+
+/* audit */
+.stage-audit{display:flex;flex-direction:column;gap:var(--space-5)}
+.stage-dl{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-3)}
+.stage-dl p{margin:0}
+.stage-dl code{font-family:var(--mono);font-size:12.5px}
+
+@media (max-width:820px){
+  .stage-ck{grid-template-columns:20px minmax(0,1fr) auto}
+  .stage-ck-a{grid-column:2 / -1;grid-row:2}
+}
+
+@media (max-width:820px){
+  .cmp-grid{grid-template-columns:minmax(0,1fr)}
+  .cmp-banner{flex-direction:column}
+}
+
+/* the shared .doc header rule (navy underline) must not reach headers nested in the governed blocks */
+.cmp-doc :is(.cmp-viol, .appr-head){border-bottom:0;padding-bottom:0}
+.cmp-doc .appr-head{padding:0}
+/* the shared .coach layout class (Agent Coach grid) also matches the Supervisor tag; keep the tag inline */
+.tag.coach{display:inline-block;grid-template-columns:none;gap:0}

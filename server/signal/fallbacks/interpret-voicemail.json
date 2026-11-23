@@ -1,0 +1,103 @@
+{
+  "fallback": true,
+  "fictional": true,
+  "role": "interpret",
+  "step": "signal.interpret",
+  "forInput": "comm-voicemail-2026-10-19",
+  "result": {
+    "intents": [
+      {
+        "type": "plan-change-inquiry",
+        "quote": "my Northlake Advantage Plus plan is ending in December and I don't know what to do"
+      },
+      {
+        "type": "cost-concern",
+        "quote": "I'm on a fixed income, so I really can't pay more than about thirty dollars a month"
+      },
+      {
+        "type": "schedule-request",
+        "quote": "Please call me back or email me"
+      },
+      {
+        "type": "consent-change",
+        "quote": "please don't text me"
+      }
+    ],
+    "preferences": [
+      {
+        "kind": "keep-provider",
+        "value": "Dr. Brennan",
+        "quote": "I need to keep Dr. Brennan"
+      },
+      {
+        "kind": "keep-provider",
+        "value": "Dr. Sullivan",
+        "quote": "my heart doctor, Dr. Sullivan"
+      },
+      {
+        "kind": "max-premium",
+        "value": "30",
+        "quote": "can't pay more than about thirty dollars a month"
+      },
+      {
+        "kind": "benefit-interest",
+        "value": "dental",
+        "quote": "Dental coverage would be nice to have"
+      },
+      {
+        "kind": "channel",
+        "value": "phone",
+        "quote": "Please call me back"
+      },
+      {
+        "kind": "channel",
+        "value": "email",
+        "quote": "or email me"
+      }
+    ],
+    "mentions": {
+      "drugs": [
+        {
+          "name": "Eliquis",
+          "quote": "Eliquis"
+        },
+        {
+          "name": "Jardiance",
+          "quote": "Jardiance"
+        },
+        {
+          "name": "metformin",
+          "quote": "metformin"
+        }
+      ],
+      "providers": [
+        {
+          "name": "Dr. Brennan",
+          "quote": "Dr. Brennan"
+        },
+        {
+          "name": "Dr. Sullivan",
+          "quote": "Dr. Sullivan"
+        }
+      ]
+    },
+    "consentSignals": [
+      {
+        "channel": "sms",
+        "permission": "revoke",
+        "quote": "please don't text me"
+      },
+      {
+        "channel": "phone",
+        "permission": "grant",
+        "quote": "Please call me back"
+      },
+      {
+        "channel": "email",
+        "permission": "grant",
+        "quote": "or email me"
+      }
+    ],
+    "summary": "Dottie Hayes says her plan is ending in December. She wants to keep Dr. Brennan and Dr. Sullivan, takes Eliquis, Jardiance and metformin, can pay about thirty dollars a month, would like dental coverage if possible, and prefers a call or an email, not a text."
+  }
+}

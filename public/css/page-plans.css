@@ -1,0 +1,123 @@
+/* Plan comparisons and the outreach document (change polish-and-realism, UI2): status bar, compliance block, approval card, compliance rail, change log, sources, cost, case board.
+   Tokens only (css/tokens.css). Loaded after css/app.css, whose older compliance rules (.cmp-banner, .cmp-flow, .cmp-viol, .cmp-tag, .cmp-how) no markup uses any more. */
+
+/* ---- the document ---- */
+.cmp-doc{padding:24px 28px;gap:18px}
+.cmp-doc > header{padding-bottom:12px}
+.cmp-doc > header .small{margin-bottom:4px}
+.cmp-doc section.rev{background:none;margin:0;padding:0}
+.cmp-doc .sec-h{margin-bottom:6px}
+.cmp-doc section{gap:10px}
+.cmp-status .ui-callout{padding:var(--space-2) var(--space-4)}
+/* the decision on the document: one verified line and the time, in the header's meta row */
+.cmp-decision{display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-1) var(--space-3);margin:0 0 var(--space-2)}
+.cmp-doc .rule-id,.cmp-rail .rule-id,.cmp-doc code{font-family:var(--mono);font-size:12px;color:var(--muted);background:none;padding:0}
+.cmp-doc .ui-facts{row-gap:0}
+.cmp-doc .ui-fact-note{max-width:60ch}
+
+/* ---- the compliance block ---- */
+.cmp-view{display:flex;flex-direction:column;gap:var(--space-3);border:0;padding:0;background:none;border-radius:0}
+.cmp-callout{align-items:flex-start}
+.cmp-callout .ui-callout-t{display:flex;flex-direction:column;gap:2px}
+.cmp-callout b{font-weight:600}
+.cmp-verdict{flex-wrap:nowrap;align-items:flex-start} .cmp-verdict > .ui-verified{flex:1 1 0;min-width:0;align-items:flex-start} .cmp-verdict > .btn{flex:none}
+.cmp-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3)}
+.cmp-col{min-width:0;border:1px solid var(--line);border-radius:var(--r-inner);padding:var(--space-2) var(--space-3);background:var(--panel)}
+.cmp-col[data-testid=cmp-before]{background:var(--sunk)}
+.cmp-col[data-testid=cmp-after]{border-color:var(--accent)}
+.cmp-col h4{display:flex;align-items:center;gap:var(--space-2);margin:0 0 var(--space-1);font:600 var(--text-label)/1.4 var(--body);letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.cmp-col .stage-body{padding:var(--space-1) 0;font-size:var(--text-cell);line-height:1.5}
+.cmp-mark{font:700 var(--text-label)/1 var(--body);color:var(--crit);margin-left:1px;vertical-align:super}
+.cmp-col[data-testid=cmp-after] .cmp-mark{color:var(--accent)}
+.cmp-disc{margin:var(--space-2) 0 0;padding:2px 0 2px var(--space-3);border-left:3px solid var(--accent);font-size:var(--text-cell);line-height:1.5;overflow-wrap:anywhere}
+.cmp-unchanged{margin:0}
+.cmp-unchanged summary{font-size:var(--text-meta)}
+.cmp-unchanged .stage-body{font-size:var(--text-meta)}
+[data-testid=violations] .sec-h{margin-bottom:var(--space-1)}
+[data-testid=violations] th:first-child,[data-testid=violations] td:first-child{width:28px;padding-right:0}
+[data-testid=violations] td{vertical-align:top;padding:var(--space-2) var(--space-3);white-space:normal;overflow-wrap:anywhere}
+[data-testid=violations] th{padding:var(--space-2) var(--space-3)}
+[data-testid=violations] td:nth-child(2){min-width:150px}
+[data-testid=violations] td:nth-child(5){white-space:nowrap}
+[data-testid=violations] td b{font-weight:600}
+.cmp-foot-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap}
+.cmp-foot-row p{margin:0}
+
+/* ---- the approval card ---- */
+.appr{display:flex;flex-direction:column;gap:var(--space-3)}
+.appr .sec-h{margin:0}
+.appr-who{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--space-3);align-items:center}
+.appr-av{width:36px;height:36px;font-size:var(--text-meta)}
+.appr-name{display:flex;flex-direction:column;min-width:0}
+.appr-name > [data-status]{align-self:flex-start;margin-top:var(--space-1)}
+.appr-attest{margin:0;padding:var(--space-2) var(--space-3);border-left:3px solid var(--accent);background:var(--sunk);border-radius:0 var(--r-inner) var(--r-inner) 0;font-size:var(--text-cell);display:flex;flex-direction:column;gap:2px}
+.appr-assigned{margin:0;padding:var(--space-2) var(--space-3);background:var(--warn-soft);border-radius:var(--r-inner)}
+.appr .ui-actions{gap:var(--space-2)}
+.appr .ui-actions .btn{min-width:96px;justify-content:center}
+.appr-body{display:flex;flex-direction:column;gap:var(--space-1);border-top:1px solid var(--line);padding-top:var(--space-3)}
+.appr-body h4{margin:0}
+.appr .ui-fact{grid-template-columns:92px minmax(0,1fr);padding:var(--space-1) 0}
+@media (min-width:1280px){ .appr .ui-facts{grid-template-columns:minmax(0,1fr)} .appr .ui-fact:nth-child(2){border-top:1px solid var(--line)} }
+.appr-read{margin-top:var(--space-1)}
+
+/* ---- the compliance rail ---- */
+.cmp-rail .sec-h{margin-bottom:var(--space-1)}
+.cmp-rail-sub{margin:0 0 var(--space-3)}
+.cmp-rail .check div{grid-template-columns:20px minmax(0,1fr);align-items:start}
+.cmp-rail .ck{width:20px;height:20px;font-size:var(--text-label)}
+.cmp-rail .ck.no{background:var(--crit-soft);color:var(--crit)}
+.cmp-rail .ck.hold{background:var(--warn-soft);color:var(--warn)}
+.cmp-rail .ck.ok{background:none;color:var(--good)}
+.cmp-rail .ck.fixed{background:none;color:var(--muted)}
+.cmp-rule{display:flex;flex-direction:column;gap:1px;min-width:0}
+.cmp-rule b{font-weight:500}
+.cmp-rule-ref{line-height:1.3}
+.cmp-passed{margin-top:var(--space-3);border-top:1px solid var(--line);padding-top:var(--space-2)}
+.cmp-passed summary{cursor:pointer;font-weight:600;font-size:var(--text-meta);color:var(--accent);width:max-content;border-radius:var(--r-pill)}
+.cmp-passed .check{margin-top:var(--space-2)}
+.cmp-status-line{margin:var(--space-3) 0 0;padding-top:var(--space-2);border-top:1px solid var(--line);color:var(--muted)}
+.cmp-passed summary:focus-visible,.cmp-more summary:focus-visible,.cmp-others summary:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+
+/* ---- the change log ---- */
+.cmp-changes{gap:0}
+.cmp-changes li{display:grid;grid-template-columns:132px auto minmax(0,1fr);gap:var(--space-2);align-items:baseline;padding:var(--space-2) 0;border-left:0;border-top:1px solid var(--line)}
+.cmp-changes li:first-child{border-top:0;padding-top:0}
+.cmp-changes time{white-space:nowrap}
+.cmp-act{font-weight:500}
+.cmp-changes .cmp-more{grid-column:2 / -1}
+.cmp-more summary{cursor:pointer;font-size:var(--text-meta);font-weight:500;color:var(--accent);width:max-content;border-radius:var(--r-pill)}
+.cmp-more p{margin:var(--space-1) 0 0;overflow-wrap:anywhere}
+
+/* ---- sources and cost ---- */
+.cmp-hashes{margin-top:var(--space-2)}
+.cmp-calc{padding:var(--space-2) 0;border-top:1px solid var(--line)}
+.cmp-calc:first-of-type{border-top:0;padding-top:0}
+.cmp-calc-h{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);margin-bottom:var(--space-1)}
+.cmp-mini{width:100%;font-size:var(--text-cell)}
+.cmp-mini th[scope=row]{font:400 var(--text-cell)/1.4 var(--body);letter-spacing:0;text-transform:none;color:var(--muted);padding:3px 0;border:0}
+.cmp-mini td{padding:3px 0;border:0}
+.cmp-mini tr.is-total th,.cmp-mini tr.is-total td{font-weight:600;color:var(--ink);border-top:1px solid var(--line)}
+.cmp-formula{margin:var(--space-1) 0 0;padding-left:var(--space-4)}
+.cmp-others{margin-top:var(--space-2)}
+.cmp-others summary{cursor:pointer;font-size:var(--text-meta);font-weight:600;color:var(--accent);width:max-content;border-radius:var(--r-pill)}
+.cmp-days{margin-top:var(--space-3)}
+.cmp-days .ui-stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* ---- the case board ---- */
+.pcard .ft .ui-num{font-weight:500;color:var(--ink)}
+
+@media (max-width:1080px){ .cmp-cols{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:760px){ .cmp-doc{padding:16px 14px} .appr-who{grid-template-columns:auto minmax(0,1fr)} .appr-who .pill{grid-column:1 / -1;justify-self:start} }
+
+/* ---- compliance block: the five figures sit on one line ---- */
+.cmp-view .ui-stat-row{grid-template-columns:minmax(0,.8fr) minmax(0,.95fr) minmax(0,.95fr) minmax(0,1.7fr) minmax(0,1.3fr);gap:var(--space-2) var(--space-3);padding:var(--space-2) var(--space-3)}
+.cmp-view .ui-stat-sub{line-height:1.3}
+@media (max-width:1280px){ .cmp-view .ui-stat-row{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.cmp-doc .ui-fact{grid-template-columns:minmax(72px,24%) minmax(0,1fr)}
+.cmp-view{gap:10px}
+[data-testid=violations] td{padding:6px var(--space-3)}
+[data-testid=violations] th{padding:6px var(--space-3)}
+
+/* the blocked panel's five figures: three short counts, then the channel change on one line and the approver */
+.cmp-view .ui-stat-row{grid-template-columns:repeat(3,max-content) max-content minmax(0,1fr);column-gap:var(--space-5)}
+.cmp-view .ui-stat-v{white-space:nowrap}

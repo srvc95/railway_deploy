@@ -1,0 +1,64 @@
+/* Copied from keel-prototype v1.2.3 public/skel.css, adapted for adopt-keel-shell */
+/* add-agentic-ux S3: the skeleton utility (design D6). The region keeps its content in the layout, hidden, so its box never
+   changes; .siqx-skel is an absolutely positioned layer of lines sized to the measured content box. Tokens only, no literal
+   colours. Under reduced motion the shimmer is off and the lines are static. */
+
+/* whole-region skeleton: the direct text goes transparent, the child elements are hidden, the layer stays */
+.siqx-skeleton{color:transparent;pointer-events:none}
+.siqx-skeleton > :not(.siqx-skel){visibility:hidden}
+/* partial skeleton: only the listed nodes are hidden (headings and links of the region stay) */
+.siqx-skel-hide{visibility:hidden;pointer-events:none}
+
+.siqx-skel{
+  position:absolute;box-sizing:border-box;overflow:hidden;
+  display:flex;flex-direction:column;
+  pointer-events:none;
+}
+.siqx-skel-line{
+  display:block;flex:none;
+  border-radius:var(--siqx-space-1);
+  background-color:var(--sunk);
+  background-image:linear-gradient(90deg,var(--sunk) 0%,var(--line) 50%,var(--sunk) 100%);
+  background-size:200% 100%;
+  animation:siqx-shimmer 1.4s linear infinite;
+}
+@keyframes siqx-shimmer{
+  from{background-position:200% 0}
+  to{background-position:-200% 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .siqx-skel-line{animation:none;background-image:none;background-color:var(--line)}
+}
+
+/* ---------- "Unsaved draft" frame of an inserted regenerated section (design D22): a session view, not a record ---------- */
+.siqx-draft{
+  margin:var(--siqx-space-2) 0;
+  padding:var(--siqx-space-3) var(--siqx-space-4);
+  border:1px dashed var(--proposal, var(--violet));border-radius:var(--siqx-radius-sm);
+  background:var(--proposal-soft, var(--violet-soft));
+}
+.siqx-draft-label{margin:0 0 var(--siqx-space-2);font-weight:600;color:var(--proposal, var(--violet))}
+.siqx-draft-body > :first-child{margin-top:0}
+.siqx-draft-body > :last-child{margin-bottom:0}
+.siqx-draft-acts{margin-top:var(--siqx-space-3)}
+
+/* ---------- tile skeletons (role switch, new signal): a rounded block per tile, placed at the tile's measured box ---------- */
+.siqx-skel.siqx-skel-tiles{display:block}
+.siqx-skel-tile{
+  position:absolute;box-sizing:border-box;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;gap:var(--siqx-space-2);
+  padding:var(--siqx-space-3) var(--siqx-space-4);
+  border:1px solid var(--line);border-radius:var(--siqx-radius-sm);
+  background-color:var(--sunk);
+}
+.siqx-skel-bar{
+  display:block;flex:none;height:var(--siqx-space-3);
+  border-radius:var(--siqx-space-1);
+  background-color:var(--line);
+  background-image:linear-gradient(90deg,var(--line) 0%,var(--sunk) 50%,var(--line) 100%);
+  background-size:200% 100%;
+  animation:siqx-shimmer 1.4s linear infinite;
+}
+@media (prefers-reduced-motion:reduce){
+  .siqx-skel-bar{animation:none;background-image:none;background-color:var(--line)}
+}

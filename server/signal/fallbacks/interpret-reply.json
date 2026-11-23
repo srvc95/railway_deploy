@@ -1,0 +1,37 @@
+{
+  "fallback": true,
+  "fictional": true,
+  "role": "reply",
+  "step": "signal.reply-interpret",
+  "forInput": "sim-reply-1",
+  "result": {
+    "intents": [
+      {
+        "type": "provider-question",
+        "quote": "Is Dr. Sullivan really in the Choice plan?"
+      },
+      {
+        "type": "schedule-request",
+        "quote": "Could you call me Thursday morning?"
+      }
+    ],
+    "preferences": [],
+    "mentions": {
+      "drugs": [],
+      "providers": [
+        {
+          "name": "Dr. Sullivan",
+          "quote": "Dr. Sullivan"
+        }
+      ]
+    },
+    "consentSignals": [
+      {
+        "channel": "phone",
+        "permission": "grant",
+        "quote": "Could you call me Thursday morning?"
+      }
+    ],
+    "summary": "Dottie thanks the agent, asks whether Dr. Sullivan is in the Choice plan, and asks for a call on Thursday morning before she signs anything."
+  }
+}

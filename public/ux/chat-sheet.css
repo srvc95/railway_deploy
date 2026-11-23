@@ -1,0 +1,66 @@
+/* Copied from keel-prototype v1.2.3 public/ux/chat-sheet.css, adapted for adopt-keel-shell */
+/* add-agentic-ux S1 polish (chat-thread): sheet header, resize handle, lifted sheet, collapsed pill, one-row presets on short
+   viewports. Token-only: original tokens (prototype.css) and --siqx- tokens (tokens.css). Loaded after chat.css so it wins ties. */
+
+/* a faded strip above the dock, so page content does not end in a hard cut against the sheet */
+#siqx-dock::after{
+  content:"";position:absolute;z-index:-1;
+  left:calc(-1 * var(--siqx-space-4));right:calc(-1 * var(--siqx-space-4));bottom:100%;
+  height:var(--siqx-fade-h);
+  background:linear-gradient(to top,var(--bg),var(--siqx-fade-clear));
+  pointer-events:none;
+}
+
+/* the sheet is lifted off the page */
+.siqx-sheet{box-shadow:var(--siqx-shadow-lift)}
+
+/* resize handle */
+.siqx-grip{
+  flex:none;position:relative;height:var(--siqx-grip-h);cursor:ns-resize;touch-action:none;user-select:none;
+}
+.siqx-grip::after{
+  content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:calc(var(--siqx-space-5) * 2);height:var(--siqx-space-1);border-radius:var(--siqx-space-1);background:var(--line);
+}
+.siqx-grip:hover::after,.siqx-grip:focus-visible::after{background:var(--accent)}
+.siqx-grip:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:var(--siqx-radius-sm)}
+
+/* header */
+.siqx-head{
+  flex:none;display:flex;align-items:center;gap:var(--siqx-space-2);
+  padding:0 var(--siqx-space-3) var(--siqx-space-2) var(--siqx-space-4);border-bottom:1px solid var(--line);
+}
+.siqx-head [hidden]{display:none}
+.siqx-title{font-weight:600;font-size:13.5px;color:var(--ink)}
+.siqx-count{font-size:12.5px;color:var(--muted)}
+.siqx-head-gap{flex:1 1 auto}
+.siqx-confirm{display:inline-flex;align-items:center;gap:var(--siqx-space-2);font-size:12.5px;color:var(--ink)}
+.siqx-hbtn{
+  flex:none;display:inline-flex;align-items:center;gap:var(--siqx-space-1);height:var(--siqx-target);
+  padding:0 var(--siqx-space-3);border:1px solid var(--line);border-radius:var(--siqx-radius-sm);
+  background:var(--panel);color:var(--muted);font:600 12.5px/1 var(--body);white-space:nowrap;
+}
+.siqx-hbtn:hover{border-color:var(--accent);color:var(--accent)}
+.siqx-hbtn:disabled{opacity:.55;cursor:default}
+.siqx-hbtn:disabled:hover{border-color:var(--line);color:var(--muted)}
+.siqx-hbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.siqx-hbtn[data-siqx="clear"]{background:var(--ink);border-color:var(--ink);color:var(--panel)}
+.siqx-hbtn[data-siqx="clear"]:hover{color:var(--panel)}
+
+/* collapsed: the same toggle button sits above the composer as a pill */
+#siqx-dock > .siqx-pill[hidden]{display:none}
+#siqx-dock > .siqx-pill{align-self:flex-end;display:flex;pointer-events:auto}
+.siqx-new{display:inline-flex;align-items:center;gap:var(--siqx-space-1);color:var(--accent)}
+.siqx-new::before{content:"";width:var(--siqx-space-2);height:var(--siqx-space-2);border-radius:50%;background:var(--accent)}
+.siqx-new[hidden]{display:none}
+
+/* the log ends in a spacer so the latest question can sit at the top */
+.siqx-tail{flex:none;margin-top:calc(-1 * var(--siqx-space-3));height:0;pointer-events:none}
+
+/* presets: one scrollable row on a short viewport (chat.js sets data-compact) */
+#siqx-dock[data-compact] > .sugg{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin}
+#siqx-dock[data-compact] > .sugg button{flex:none;white-space:nowrap}
+/* a clipped end of the row fades out (chat.js sets data-fade to start, end or both) so no chip is cut off silently */
+#siqx-dock[data-compact] > .sugg[data-fade="end"]{mask-image:linear-gradient(to right,var(--ink) calc(100% - var(--siqx-space-5) * 2),var(--siqx-fade-clear))}
+#siqx-dock[data-compact] > .sugg[data-fade="start"]{mask-image:linear-gradient(to left,var(--ink) calc(100% - var(--siqx-space-5) * 2),var(--siqx-fade-clear))}
+#siqx-dock[data-compact] > .sugg[data-fade="both"]{mask-image:linear-gradient(to right,var(--siqx-fade-clear),var(--ink) calc(var(--siqx-space-5) * 2),var(--ink) calc(100% - var(--siqx-space-5) * 2),var(--siqx-fade-clear))}

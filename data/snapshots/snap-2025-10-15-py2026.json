@@ -1,0 +1,1389 @@
+{
+  "id": "snap-2025-10-15-py2026",
+  "label": "Plan year 2026 data as known on 2025-10-15 (synthetic demo data)",
+  "knownAt": "2025-10-15",
+  "supersededAt": "2026-10-15",
+  "planYear": 2026,
+  "entities": {
+    "county-lorain-oh": {
+      "id": "county-lorain-oh",
+      "kind": "County",
+      "name": "Lorain County",
+      "state": "OH",
+      "fipsDisplay": "39093",
+      "ssaCode": "36480",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "county-lorain-oh",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Service area: Lorain County, Ohio"
+      },
+      "fictional": true
+    },
+    "carrier-northlake": {
+      "id": "carrier-northlake",
+      "kind": "Carrier",
+      "name": "Northlake Health Plan",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "carrier-northlake",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Carrier: Northlake Health Plan"
+      },
+      "fictional": true
+    },
+    "ben-hayes": {
+      "id": "ben-hayes",
+      "kind": "Beneficiary",
+      "name": "Dorothy \"Dottie\" Hayes",
+      "dob": "1955-03-14",
+      "mbiDisplay": "••••-•••-TK52",
+      "countyId": "county-lorain-oh",
+      "partA": "2020-03-01",
+      "partB": "2020-03-01",
+      "medicaid": "none",
+      "lis": false,
+      "esrd": false,
+      "contactPrefs": {
+        "timezone": "America/New_York",
+        "email": "dottie.hayes@example.com",
+        "phoneDisplay": "(440) 555-0142",
+        "mailingCity": "Elyria",
+        "mailingZip": "44035"
+      },
+      "pharmacy": {
+        "name": "Cedar Ridge Pharmacy",
+        "city": "Elyria",
+        "network": "preferred retail, in network"
+      },
+      "source": {
+        "system": "enrollment",
+        "recordId": "ben-hayes",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Enrollment record: Dorothy \"Dottie\" Hayes"
+      },
+      "fictional": true
+    },
+    "prov-brennan": {
+      "id": "prov-brennan",
+      "kind": "Provider",
+      "name": "Dr. Karen Brennan, MD",
+      "specialty": "Primary care",
+      "npiDisplay": "1947360289",
+      "taxonomy": "207R00000X",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-brennan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Provider directory: Dr. Karen Brennan, MD"
+      },
+      "fictional": true
+    },
+    "prov-sullivan": {
+      "id": "prov-sullivan",
+      "kind": "Provider",
+      "name": "Dr. Steven Sullivan, MD",
+      "specialty": "Cardiology",
+      "npiDisplay": "1638290472",
+      "taxonomy": "207RC0000X",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-sullivan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Provider directory: Dr. Steven Sullivan, MD"
+      },
+      "fictional": true
+    },
+    "fac-avmc": {
+      "id": "fac-avmc",
+      "kind": "Facility",
+      "name": "North Coast Regional Medical Center",
+      "facilityType": "hospital",
+      "taxonomy": "282N00000X",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "fac-avmc",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Provider directory: North Coast Regional Medical Center"
+      },
+      "fictional": true
+    },
+    "drug-eliquis": {
+      "id": "drug-eliquis",
+      "kind": "Drug",
+      "name": "Eliquis (apixaban) 5 mg",
+      "generic": "apixaban",
+      "brand": "Eliquis",
+      "strength": "5 mg",
+      "form": "tablet",
+      "source": {
+        "system": "formulary",
+        "recordId": "drug-eliquis",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Drug reference: Eliquis (apixaban) 5 mg"
+      },
+      "fictional": true
+    },
+    "drug-jardiance": {
+      "id": "drug-jardiance",
+      "kind": "Drug",
+      "name": "Jardiance (empagliflozin) 10 mg",
+      "generic": "empagliflozin",
+      "brand": "Jardiance",
+      "strength": "10 mg",
+      "form": "tablet",
+      "source": {
+        "system": "formulary",
+        "recordId": "drug-jardiance",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Drug reference: Jardiance (empagliflozin) 10 mg"
+      },
+      "fictional": true
+    },
+    "drug-atorvastatin": {
+      "id": "drug-atorvastatin",
+      "kind": "Drug",
+      "name": "Atorvastatin 40 mg",
+      "generic": "atorvastatin",
+      "brand": null,
+      "strength": "40 mg",
+      "form": "tablet",
+      "source": {
+        "system": "formulary",
+        "recordId": "drug-atorvastatin",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Drug reference: Atorvastatin 40 mg"
+      },
+      "fictional": true
+    },
+    "drug-metformin-er": {
+      "id": "drug-metformin-er",
+      "kind": "Drug",
+      "name": "Metformin ER 500 mg",
+      "generic": "metformin ER",
+      "brand": null,
+      "strength": "500 mg",
+      "form": "extended-release tablet",
+      "source": {
+        "system": "formulary",
+        "recordId": "drug-metformin-er",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Drug reference: Metformin ER 500 mg"
+      },
+      "fictional": true
+    },
+    "plan-H9701-004": {
+      "id": "plan-H9701-004",
+      "kind": "Plan",
+      "name": "Northlake Advantage Plus (HMO)",
+      "carrierId": "carrier-northlake",
+      "contractPlanId": "H9701-004",
+      "planYear": 2026,
+      "type": "HMO",
+      "premiumMonthly": 0,
+      "partBGiveback": 0,
+      "moopInNetwork": 690000,
+      "drugDeductible": 0,
+      "deductibleTiers": [],
+      "starRating": {
+        "value": 4,
+        "ratingYear": 2026
+      },
+      "extras": {
+        "dentalAllowance": 40000,
+        "visionAllowance": 15000,
+        "otcQuarterly": 0
+      },
+      "requiresMedicaid": false,
+      "formularyId": "form-H9701-004",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "H9701-004",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Plan landscape 2026: Northlake Advantage Plus (HMO)"
+      },
+      "fictional": true
+    },
+    "form-H9701-004": {
+      "id": "form-H9701-004",
+      "kind": "Formulary",
+      "name": "Northlake Advantage Plus (HMO) 2026 formulary",
+      "planYear": 2026,
+      "source": {
+        "system": "formulary",
+        "recordId": "form-H9701-004",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Northlake Advantage Plus (HMO)"
+      },
+      "fictional": true
+    },
+    "fe-H9701-004-eliquis": {
+      "id": "fe-H9701-004-eliquis",
+      "kind": "FormularyEntry",
+      "name": "apixaban on Northlake Advantage Plus (HMO)",
+      "formularyId": "form-H9701-004",
+      "drugId": "drug-eliquis",
+      "tier": 3,
+      "copay30": 4200,
+      "coinsurancePct": null,
+      "price30": 23100,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-004-eliquis",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Eliquis (apixaban) 5 mg on Northlake Advantage Plus (HMO)"
+      },
+      "fictional": true
+    },
+    "fe-H9701-004-jardiance": {
+      "id": "fe-H9701-004-jardiance",
+      "kind": "FormularyEntry",
+      "name": "empagliflozin on Northlake Advantage Plus (HMO)",
+      "formularyId": "form-H9701-004",
+      "drugId": "drug-jardiance",
+      "tier": 3,
+      "copay30": 4200,
+      "coinsurancePct": null,
+      "price30": 19700,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-004-jardiance",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Jardiance (empagliflozin) 10 mg on Northlake Advantage Plus (HMO)"
+      },
+      "fictional": true
+    },
+    "fe-H9701-004-atorvastatin": {
+      "id": "fe-H9701-004-atorvastatin",
+      "kind": "FormularyEntry",
+      "name": "atorvastatin on Northlake Advantage Plus (HMO)",
+      "formularyId": "form-H9701-004",
+      "drugId": "drug-atorvastatin",
+      "tier": 1,
+      "copay30": 0,
+      "coinsurancePct": null,
+      "price30": 800,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-004-atorvastatin",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Atorvastatin 40 mg on Northlake Advantage Plus (HMO)"
+      },
+      "fictional": true
+    },
+    "fe-H9701-004-metformin-er": {
+      "id": "fe-H9701-004-metformin-er",
+      "kind": "FormularyEntry",
+      "name": "metformin ER on Northlake Advantage Plus (HMO)",
+      "formularyId": "form-H9701-004",
+      "drugId": "drug-metformin-er",
+      "tier": 1,
+      "copay30": 0,
+      "coinsurancePct": null,
+      "price30": 600,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-004-metformin-er",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Metformin ER 500 mg on Northlake Advantage Plus (HMO)"
+      },
+      "fictional": true
+    },
+    "plan-H9701-011": {
+      "id": "plan-H9701-011",
+      "kind": "Plan",
+      "name": "Northlake Choice (PPO)",
+      "carrierId": "carrier-northlake",
+      "contractPlanId": "H9701-011",
+      "planYear": 2026,
+      "type": "PPO",
+      "premiumMonthly": 1500,
+      "partBGiveback": 0,
+      "moopInNetwork": 650000,
+      "drugDeductible": 0,
+      "deductibleTiers": [],
+      "starRating": {
+        "value": 4,
+        "ratingYear": 2026
+      },
+      "extras": {
+        "dentalAllowance": 50000,
+        "visionAllowance": 15000,
+        "otcQuarterly": 0
+      },
+      "requiresMedicaid": false,
+      "formularyId": "form-H9701-011",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "H9701-011",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Plan landscape 2026: Northlake Choice (PPO)"
+      },
+      "fictional": true
+    },
+    "form-H9701-011": {
+      "id": "form-H9701-011",
+      "kind": "Formulary",
+      "name": "Northlake Choice (PPO) 2026 formulary",
+      "planYear": 2026,
+      "source": {
+        "system": "formulary",
+        "recordId": "form-H9701-011",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Northlake Choice (PPO)"
+      },
+      "fictional": true
+    },
+    "fe-H9701-011-eliquis": {
+      "id": "fe-H9701-011-eliquis",
+      "kind": "FormularyEntry",
+      "name": "apixaban on Northlake Choice (PPO)",
+      "formularyId": "form-H9701-011",
+      "drugId": "drug-eliquis",
+      "tier": 3,
+      "copay30": 4500,
+      "coinsurancePct": null,
+      "price30": 23100,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-011-eliquis",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Eliquis (apixaban) 5 mg on Northlake Choice (PPO)"
+      },
+      "fictional": true
+    },
+    "fe-H9701-011-jardiance": {
+      "id": "fe-H9701-011-jardiance",
+      "kind": "FormularyEntry",
+      "name": "empagliflozin on Northlake Choice (PPO)",
+      "formularyId": "form-H9701-011",
+      "drugId": "drug-jardiance",
+      "tier": 3,
+      "copay30": 4500,
+      "coinsurancePct": null,
+      "price30": 19700,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-011-jardiance",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Jardiance (empagliflozin) 10 mg on Northlake Choice (PPO)"
+      },
+      "fictional": true
+    },
+    "fe-H9701-011-atorvastatin": {
+      "id": "fe-H9701-011-atorvastatin",
+      "kind": "FormularyEntry",
+      "name": "atorvastatin on Northlake Choice (PPO)",
+      "formularyId": "form-H9701-011",
+      "drugId": "drug-atorvastatin",
+      "tier": 1,
+      "copay30": 0,
+      "coinsurancePct": null,
+      "price30": 800,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-011-atorvastatin",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Atorvastatin 40 mg on Northlake Choice (PPO)"
+      },
+      "fictional": true
+    },
+    "fe-H9701-011-metformin-er": {
+      "id": "fe-H9701-011-metformin-er",
+      "kind": "FormularyEntry",
+      "name": "metformin ER on Northlake Choice (PPO)",
+      "formularyId": "form-H9701-011",
+      "drugId": "drug-metformin-er",
+      "tier": 1,
+      "copay30": 0,
+      "coinsurancePct": null,
+      "price30": 600,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-011-metformin-er",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Metformin ER 500 mg on Northlake Choice (PPO)"
+      },
+      "fictional": true
+    },
+    "plan-S9701-003": {
+      "id": "plan-S9701-003",
+      "kind": "Plan",
+      "name": "Northlake Rx (PDP)",
+      "carrierId": "carrier-northlake",
+      "contractPlanId": "S9701-003",
+      "planYear": 2026,
+      "type": "PDP",
+      "premiumMonthly": 3520,
+      "partBGiveback": 0,
+      "moopInNetwork": null,
+      "drugDeductible": 61500,
+      "deductibleTiers": [
+        3,
+        4,
+        5
+      ],
+      "starRating": {
+        "value": 3.5,
+        "ratingYear": 2026
+      },
+      "extras": {
+        "dentalAllowance": 0,
+        "visionAllowance": 0,
+        "otcQuarterly": 0
+      },
+      "requiresMedicaid": false,
+      "formularyId": "form-S9701-003",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "S9701-003",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Plan landscape 2026: Northlake Rx (PDP)"
+      },
+      "fictional": true
+    },
+    "form-S9701-003": {
+      "id": "form-S9701-003",
+      "kind": "Formulary",
+      "name": "Northlake Rx (PDP) 2026 formulary",
+      "planYear": 2026,
+      "source": {
+        "system": "formulary",
+        "recordId": "form-S9701-003",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Northlake Rx (PDP)"
+      },
+      "fictional": true
+    },
+    "fe-S9701-003-eliquis": {
+      "id": "fe-S9701-003-eliquis",
+      "kind": "FormularyEntry",
+      "name": "apixaban on Northlake Rx (PDP)",
+      "formularyId": "form-S9701-003",
+      "drugId": "drug-eliquis",
+      "tier": 3,
+      "copay30": 4500,
+      "coinsurancePct": null,
+      "price30": 23100,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-S9701-003-eliquis",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Eliquis (apixaban) 5 mg on Northlake Rx (PDP)"
+      },
+      "fictional": true
+    },
+    "fe-S9701-003-jardiance": {
+      "id": "fe-S9701-003-jardiance",
+      "kind": "FormularyEntry",
+      "name": "empagliflozin on Northlake Rx (PDP)",
+      "formularyId": "form-S9701-003",
+      "drugId": "drug-jardiance",
+      "tier": 3,
+      "copay30": 4500,
+      "coinsurancePct": null,
+      "price30": 19700,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-S9701-003-jardiance",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Jardiance (empagliflozin) 10 mg on Northlake Rx (PDP)"
+      },
+      "fictional": true
+    },
+    "fe-S9701-003-atorvastatin": {
+      "id": "fe-S9701-003-atorvastatin",
+      "kind": "FormularyEntry",
+      "name": "atorvastatin on Northlake Rx (PDP)",
+      "formularyId": "form-S9701-003",
+      "drugId": "drug-atorvastatin",
+      "tier": 1,
+      "copay30": 0,
+      "coinsurancePct": null,
+      "price30": 800,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-S9701-003-atorvastatin",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Atorvastatin 40 mg on Northlake Rx (PDP)"
+      },
+      "fictional": true
+    },
+    "fe-S9701-003-metformin-er": {
+      "id": "fe-S9701-003-metformin-er",
+      "kind": "FormularyEntry",
+      "name": "metformin ER on Northlake Rx (PDP)",
+      "formularyId": "form-S9701-003",
+      "drugId": "drug-metformin-er",
+      "tier": 1,
+      "copay30": 0,
+      "coinsurancePct": null,
+      "price30": 600,
+      "priorAuth": false,
+      "stepTherapy": false,
+      "quantityLimit": null,
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-S9701-003-metformin-er",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Metformin ER 500 mg on Northlake Rx (PDP)"
+      },
+      "fictional": true
+    },
+    "agent-mitchell": {
+      "id": "agent-mitchell",
+      "kind": "Agent",
+      "name": "Ryan Mitchell",
+      "role": "licensed-agent",
+      "employer": "carrier",
+      "stateLicenses": [
+        "OH"
+      ],
+      "certifiedPlanYears": [
+        2025,
+        2026
+      ],
+      "source": {
+        "system": "crm",
+        "recordId": "agent-mitchell",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Agent record: Ryan Mitchell"
+      },
+      "fictional": true
+    },
+    "agent-sutton": {
+      "id": "agent-sutton",
+      "kind": "Agent",
+      "name": "Carol Sutton",
+      "role": "sales-supervisor",
+      "employer": "carrier",
+      "stateLicenses": [
+        "OH"
+      ],
+      "certifiedPlanYears": [
+        2025,
+        2026
+      ],
+      "source": {
+        "system": "crm",
+        "recordId": "agent-sutton",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Agent record: Carol Sutton"
+      },
+      "fictional": true
+    },
+    "consent-email": {
+      "id": "consent-email",
+      "kind": "Consent",
+      "name": "Email: granted, written opt-in 2024-11-02",
+      "beneficiaryId": "ben-hayes",
+      "channel": "email",
+      "status": "granted",
+      "basis": "written-opt-in",
+      "at": "2024-11-02T11:20:00-04:00",
+      "source": {
+        "system": "consent",
+        "recordId": "consent-email",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Consent record: Email: granted, written opt-in 2024-11-02"
+      },
+      "fictional": true
+    },
+    "consent-sms": {
+      "id": "consent-sms",
+      "kind": "Consent",
+      "name": "Text message: revoked 2025-06-10 (replied STOP)",
+      "beneficiaryId": "ben-hayes",
+      "channel": "sms",
+      "status": "revoked",
+      "basis": "opt-out",
+      "at": "2025-06-10T09:12:00-04:00",
+      "source": {
+        "system": "consent",
+        "recordId": "consent-sms",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Consent record: Text message: revoked 2025-06-10 (replied STOP)"
+      },
+      "fictional": true
+    },
+    "consent-phone": {
+      "id": "consent-phone",
+      "kind": "Consent",
+      "name": "Phone: no consent on file",
+      "beneficiaryId": "ben-hayes",
+      "channel": "phone",
+      "status": "none",
+      "basis": "none",
+      "at": "2025-10-15T00:00:00-04:00",
+      "source": {
+        "system": "consent",
+        "recordId": "consent-phone",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Consent record: Phone: no consent on file"
+      },
+      "fictional": true
+    },
+    "soa-hayes": {
+      "id": "soa-hayes",
+      "kind": "ScopeOfAppointment",
+      "name": "Scope of Appointment: none on file",
+      "beneficiaryId": "ben-hayes",
+      "products": [
+        "MA",
+        "PartD"
+      ],
+      "signedAt": null,
+      "method": null,
+      "source": {
+        "system": "crm",
+        "recordId": "soa-hayes",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "CRM: no Scope of Appointment on file"
+      },
+      "fictional": true
+    },
+    "comm-sms-stop": {
+      "id": "comm-sms-stop",
+      "kind": "Communication",
+      "name": "Text reply: STOP",
+      "direction": "inbound",
+      "channel": "sms",
+      "at": "2025-06-10T09:12:00-04:00",
+      "subject": "Text reply: STOP",
+      "text": "STOP",
+      "memberInitiated": true,
+      "source": {
+        "system": "comms",
+        "recordId": "comm-sms-stop",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Communication log: Text reply: STOP"
+      },
+      "fictional": true
+    },
+    "ep-aep": {
+      "id": "ep-aep",
+      "kind": "ElectionPeriod",
+      "name": "Annual Enrollment Period (Oct 15 to Dec 7, 2025)",
+      "code": "AEP",
+      "start": "2025-10-15",
+      "end": "2025-12-07",
+      "effectiveRule": "Coverage starts Jan 1, 2026",
+      "source": {
+        "system": "rules",
+        "recordId": "ep-aep",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Annual Enrollment Period (Oct 15 to Dec 7, 2025)"
+      },
+      "fictional": true
+    },
+    "ep-maoep": {
+      "id": "ep-maoep",
+      "kind": "ElectionPeriod",
+      "name": "Medicare Advantage Open Enrollment Period (Jan 1 to Mar 31, 2026)",
+      "code": "MA-OEP",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "effectiveRule": "One change; coverage starts the first of the month after the plan receives the request (CMS enrollment guidance 30.4)",
+      "source": {
+        "system": "rules",
+        "recordId": "ep-maoep",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Medicare Advantage Open Enrollment Period (Jan 1 to Mar 31, 2026)"
+      },
+      "fictional": true
+    }
+  },
+  "relations": [
+    {
+      "from": "ben-hayes",
+      "type": "RESIDES_IN",
+      "to": "county-lorain-oh",
+      "validFrom": "2020-03-01",
+      "source": {
+        "system": "enrollment",
+        "recordId": "ben-hayes",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Enrollment record: residence"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "SEES",
+      "to": "prov-brennan",
+      "validFrom": "2021-01-01",
+      "attrs": {
+        "priority": "must-keep"
+      },
+      "source": {
+        "system": "enrollment",
+        "recordId": "prov-brennan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Member record: sees Dr. Brennan"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "SEES",
+      "to": "prov-sullivan",
+      "validFrom": "2022-01-01",
+      "attrs": {
+        "priority": "must-keep"
+      },
+      "source": {
+        "system": "enrollment",
+        "recordId": "prov-sullivan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Member record: sees Dr. Sullivan"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "SEES",
+      "to": "fac-avmc",
+      "validFrom": "2022-01-01",
+      "attrs": {
+        "priority": "preferred"
+      },
+      "source": {
+        "system": "enrollment",
+        "recordId": "fac-avmc",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Member record: uses North Coast Regional Medical Center"
+      }
+    },
+    {
+      "from": "prov-brennan",
+      "type": "AFFILIATED_WITH",
+      "to": "fac-avmc",
+      "validFrom": "2015-01-01",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-brennan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Provider directory: Brennan affiliated with North Coast Regional Medical Center"
+      }
+    },
+    {
+      "from": "prov-sullivan",
+      "type": "AFFILIATED_WITH",
+      "to": "fac-avmc",
+      "validFrom": "2015-01-01",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-sullivan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Provider directory: Sullivan affiliated with North Coast Regional Medical Center"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "TAKES",
+      "to": "drug-eliquis",
+      "validFrom": "2024-01-01",
+      "attrs": {
+        "fillsPerYear": 12,
+        "daysSupply": 30,
+        "pharmacyType": "retail"
+      },
+      "source": {
+        "system": "enrollment",
+        "recordId": "drug-eliquis",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Member record: takes Eliquis (apixaban) 5 mg"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "TAKES",
+      "to": "drug-jardiance",
+      "validFrom": "2024-01-01",
+      "attrs": {
+        "fillsPerYear": 12,
+        "daysSupply": 30,
+        "pharmacyType": "retail"
+      },
+      "source": {
+        "system": "enrollment",
+        "recordId": "drug-jardiance",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Member record: takes Jardiance (empagliflozin) 10 mg"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "TAKES",
+      "to": "drug-atorvastatin",
+      "validFrom": "2024-01-01",
+      "attrs": {
+        "fillsPerYear": 12,
+        "daysSupply": 30,
+        "pharmacyType": "retail"
+      },
+      "source": {
+        "system": "enrollment",
+        "recordId": "drug-atorvastatin",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Member record: takes Atorvastatin 40 mg"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "TAKES",
+      "to": "drug-metformin-er",
+      "validFrom": "2024-01-01",
+      "attrs": {
+        "fillsPerYear": 12,
+        "daysSupply": 30,
+        "pharmacyType": "retail"
+      },
+      "source": {
+        "system": "enrollment",
+        "recordId": "drug-metformin-er",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Member record: takes Metformin ER 500 mg"
+      }
+    },
+    {
+      "from": "plan-H9701-004",
+      "type": "OFFERED_BY",
+      "to": "carrier-northlake",
+      "validFrom": "2024-01-01",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "H9701-004",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Plan landscape 2026: Northlake Advantage Plus (HMO)"
+      }
+    },
+    {
+      "from": "plan-H9701-004",
+      "type": "OFFERED_IN",
+      "to": "county-lorain-oh",
+      "validFrom": "2024-01-01",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "H9701-004",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Plan landscape 2026: Northlake Advantage Plus (HMO)"
+      }
+    },
+    {
+      "from": "plan-H9701-004",
+      "type": "HAS_FORMULARY",
+      "to": "form-H9701-004",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "formulary",
+        "recordId": "form-H9701-004",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Northlake Advantage Plus (HMO)"
+      }
+    },
+    {
+      "from": "form-H9701-004",
+      "type": "LISTS_DRUG",
+      "to": "drug-eliquis",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-H9701-004-eliquis"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-004-eliquis",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Eliquis (apixaban) 5 mg"
+      }
+    },
+    {
+      "from": "form-H9701-004",
+      "type": "LISTS_DRUG",
+      "to": "drug-jardiance",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-H9701-004-jardiance"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-004-jardiance",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Jardiance (empagliflozin) 10 mg"
+      }
+    },
+    {
+      "from": "form-H9701-004",
+      "type": "LISTS_DRUG",
+      "to": "drug-atorvastatin",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-H9701-004-atorvastatin"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-004-atorvastatin",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Atorvastatin 40 mg"
+      }
+    },
+    {
+      "from": "form-H9701-004",
+      "type": "LISTS_DRUG",
+      "to": "drug-metformin-er",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-H9701-004-metformin-er"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-004-metformin-er",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Metformin ER 500 mg"
+      }
+    },
+    {
+      "from": "prov-brennan",
+      "type": "IN_NETWORK",
+      "to": "plan-H9701-004",
+      "validFrom": "2024-01-01",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-brennan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Network 2026: Dr. Karen Brennan, MD in Northlake Advantage Plus (HMO)"
+      }
+    },
+    {
+      "from": "prov-sullivan",
+      "type": "IN_NETWORK",
+      "to": "plan-H9701-004",
+      "validFrom": "2024-01-01",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-sullivan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Network 2026: Dr. Steven Sullivan, MD in Northlake Advantage Plus (HMO)"
+      }
+    },
+    {
+      "from": "fac-avmc",
+      "type": "IN_NETWORK",
+      "to": "plan-H9701-004",
+      "validFrom": "2024-01-01",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "fac-avmc",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Network 2026: North Coast Regional Medical Center in Northlake Advantage Plus (HMO)"
+      }
+    },
+    {
+      "from": "plan-H9701-011",
+      "type": "OFFERED_BY",
+      "to": "carrier-northlake",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "H9701-011",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Plan landscape 2026: Northlake Choice (PPO)"
+      }
+    },
+    {
+      "from": "plan-H9701-011",
+      "type": "OFFERED_IN",
+      "to": "county-lorain-oh",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "H9701-011",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Plan landscape 2026: Northlake Choice (PPO)"
+      }
+    },
+    {
+      "from": "plan-H9701-011",
+      "type": "HAS_FORMULARY",
+      "to": "form-H9701-011",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "formulary",
+        "recordId": "form-H9701-011",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Northlake Choice (PPO)"
+      }
+    },
+    {
+      "from": "form-H9701-011",
+      "type": "LISTS_DRUG",
+      "to": "drug-eliquis",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-H9701-011-eliquis"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-011-eliquis",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Eliquis (apixaban) 5 mg"
+      }
+    },
+    {
+      "from": "form-H9701-011",
+      "type": "LISTS_DRUG",
+      "to": "drug-jardiance",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-H9701-011-jardiance"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-011-jardiance",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Jardiance (empagliflozin) 10 mg"
+      }
+    },
+    {
+      "from": "form-H9701-011",
+      "type": "LISTS_DRUG",
+      "to": "drug-atorvastatin",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-H9701-011-atorvastatin"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-011-atorvastatin",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Atorvastatin 40 mg"
+      }
+    },
+    {
+      "from": "form-H9701-011",
+      "type": "LISTS_DRUG",
+      "to": "drug-metformin-er",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-H9701-011-metformin-er"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-H9701-011-metformin-er",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Metformin ER 500 mg"
+      }
+    },
+    {
+      "from": "prov-brennan",
+      "type": "IN_NETWORK",
+      "to": "plan-H9701-011",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-brennan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Network 2026: Dr. Karen Brennan, MD in Northlake Choice (PPO)"
+      }
+    },
+    {
+      "from": "prov-sullivan",
+      "type": "IN_NETWORK",
+      "to": "plan-H9701-011",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-sullivan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Network 2026: Dr. Steven Sullivan, MD in Northlake Choice (PPO)"
+      }
+    },
+    {
+      "from": "fac-avmc",
+      "type": "IN_NETWORK",
+      "to": "plan-H9701-011",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "provider-directory",
+        "recordId": "fac-avmc",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Network 2026: North Coast Regional Medical Center in Northlake Choice (PPO)"
+      }
+    },
+    {
+      "from": "plan-S9701-003",
+      "type": "OFFERED_BY",
+      "to": "carrier-northlake",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "S9701-003",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Plan landscape 2026: Northlake Rx (PDP)"
+      }
+    },
+    {
+      "from": "plan-S9701-003",
+      "type": "OFFERED_IN",
+      "to": "county-lorain-oh",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "plan-landscape",
+        "recordId": "S9701-003",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Plan landscape 2026: Northlake Rx (PDP)"
+      }
+    },
+    {
+      "from": "plan-S9701-003",
+      "type": "HAS_FORMULARY",
+      "to": "form-S9701-003",
+      "validFrom": "2026-01-01",
+      "source": {
+        "system": "formulary",
+        "recordId": "form-S9701-003",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary: Northlake Rx (PDP)"
+      }
+    },
+    {
+      "from": "form-S9701-003",
+      "type": "LISTS_DRUG",
+      "to": "drug-eliquis",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-S9701-003-eliquis"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-S9701-003-eliquis",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Eliquis (apixaban) 5 mg"
+      }
+    },
+    {
+      "from": "form-S9701-003",
+      "type": "LISTS_DRUG",
+      "to": "drug-jardiance",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-S9701-003-jardiance"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-S9701-003-jardiance",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Jardiance (empagliflozin) 10 mg"
+      }
+    },
+    {
+      "from": "form-S9701-003",
+      "type": "LISTS_DRUG",
+      "to": "drug-atorvastatin",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-S9701-003-atorvastatin"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-S9701-003-atorvastatin",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Atorvastatin 40 mg"
+      }
+    },
+    {
+      "from": "form-S9701-003",
+      "type": "LISTS_DRUG",
+      "to": "drug-metformin-er",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "entryId": "fe-S9701-003-metformin-er"
+      },
+      "source": {
+        "system": "formulary",
+        "recordId": "fe-S9701-003-metformin-er",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "2026 formulary lists Metformin ER 500 mg"
+      }
+    },
+    {
+      "from": "prov-brennan",
+      "type": "IN_NETWORK",
+      "to": "plan-S9701-003",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "basis": "original-medicare"
+      },
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-brennan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Network 2026: Dr. Karen Brennan, MD in Northlake Rx (PDP)"
+      }
+    },
+    {
+      "from": "prov-sullivan",
+      "type": "IN_NETWORK",
+      "to": "plan-S9701-003",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "basis": "original-medicare"
+      },
+      "source": {
+        "system": "provider-directory",
+        "recordId": "prov-sullivan",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Network 2026: Dr. Steven Sullivan, MD in Northlake Rx (PDP)"
+      }
+    },
+    {
+      "from": "fac-avmc",
+      "type": "IN_NETWORK",
+      "to": "plan-S9701-003",
+      "validFrom": "2026-01-01",
+      "attrs": {
+        "basis": "original-medicare"
+      },
+      "source": {
+        "system": "provider-directory",
+        "recordId": "fac-avmc",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Network 2026: North Coast Regional Medical Center in Northlake Rx (PDP)"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "ENROLLED_IN",
+      "to": "plan-H9701-004",
+      "validFrom": "2024-01-01",
+      "attrs": {
+        "since": "2024-01-01"
+      },
+      "source": {
+        "system": "enrollment",
+        "recordId": "plan-H9701-004",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Enrollment record: Northlake Advantage Plus (HMO)"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "ASSIGNED_AGENT",
+      "to": "agent-mitchell",
+      "validFrom": "2024-01-01",
+      "source": {
+        "system": "crm",
+        "recordId": "agent-mitchell",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "CRM: assigned agent Ryan Mitchell"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "HAS_CONSENT",
+      "to": "consent-email",
+      "validFrom": "2024-11-02",
+      "source": {
+        "system": "consent",
+        "recordId": "consent-email",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Consent record: Email: granted, written opt-in 2024-11-02"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "HAS_CONSENT",
+      "to": "consent-sms",
+      "validFrom": "2025-06-10",
+      "source": {
+        "system": "consent",
+        "recordId": "consent-sms",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Consent record: Text message: revoked 2025-06-10 (replied STOP)"
+      }
+    },
+    {
+      "from": "ben-hayes",
+      "type": "HAS_CONSENT",
+      "to": "consent-phone",
+      "validFrom": "2025-10-15",
+      "source": {
+        "system": "consent",
+        "recordId": "consent-phone",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Consent record: Phone: no consent on file"
+      }
+    },
+    {
+      "from": "comm-sms-stop",
+      "type": "RECEIVED_FROM",
+      "to": "ben-hayes",
+      "validFrom": "2025-06-10",
+      "source": {
+        "system": "comms",
+        "recordId": "comm-sms-stop",
+        "snapshotId": "snap-2025-10-15-py2026",
+        "label": "Communication log: Text reply: STOP"
+      }
+    }
+  ],
+  "params": {
+    "planYear": 2026,
+    "partDDeductibleMax": 61500,
+    "partDOopThreshold": 210000,
+    "maMoopInNetworkMax": 925000,
+    "insulinMonthlyCap": 3500,
+    "partBPremiumStandard": 20290,
+    "verified": {
+      "partDDeductibleMax": {
+        "source": "CMS CY2027 Rate Announcement (Apr 6 2026), Tables V-2, V-6",
+        "checkedOn": "2026-10-20"
+      },
+      "partDOopThreshold": {
+        "source": "CMS CY2027 Rate Announcement (Apr 6 2026), Tables V-2, V-6",
+        "checkedOn": "2026-10-20"
+      },
+      "maMoopInNetworkMax": "illustrative",
+      "insulinMonthlyCap": {
+        "source": "medicare.gov/coverage/insulin; Social Security Act sec 1860D-2(b)(9)",
+        "checkedOn": "2026-10-20"
+      },
+      "partBPremiumStandard": {
+        "source": "CMS fact sheet, 2026 Medicare Parts A and B premiums and deductibles (Nov 2025)",
+        "checkedOn": "2026-10-20"
+      }
+    }
+  },
+  "contentHash": "5aa778f9c61b20cfee0b985a4406138a3d1dc847650b4eedaa547d6a84a01cb9",
+  "fictional": true
+}

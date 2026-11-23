@@ -1,0 +1,61 @@
+/* Guided tour (change polish-and-realism, TOUR.2). Compact popover: act and badge, step and segments, title, two lines of text, then one footer row (the viewer's task, Back, Next).
+   Classes are namespaced .siqg-; colours come only from tokens.css. No transitions and no smooth scroll, so reduced motion needs nothing but a static spinner. */
+.siqg-pop{position:fixed;left:0;top:0;z-index:var(--z-tour);width:min(380px,calc(100vw - 24px));max-height:calc(100vh - 24px);overflow:auto;display:flex;flex-direction:column;gap:6px;padding:10px 12px;background:var(--panel);color:var(--ink);border:1px solid var(--accent);border-radius:var(--radius-sm);box-shadow:var(--shadow);font-size:13px;line-height:1.4}
+.siqg-ring{position:fixed;z-index:var(--z-tour-ring);pointer-events:none;outline:2px solid var(--accent);outline-offset:6px;border-radius:var(--radius-sm);box-shadow:none}
+.siqg-ring[hidden],.siqg-pop[hidden],.siqg-beak[hidden]{display:none}
+/* the beak: a 10 px square turned 45 degrees, drawn over the popover's border on the side that faces the ring; only its two outer edges show */
+.siqg-beak{position:fixed;z-index:var(--z-tour);box-sizing:border-box;width:10px;height:10px;pointer-events:none;background:var(--panel);border:0 solid var(--accent);transform:rotate(45deg)}
+.siqg-beak[data-dir=left]{border-left-width:1px;border-bottom-width:1px}
+.siqg-beak[data-dir=right]{border-right-width:1px;border-top-width:1px}
+.siqg-beak[data-dir=up]{border-left-width:1px;border-top-width:1px}
+.siqg-beak[data-dir=down]{border-right-width:1px;border-bottom-width:1px}
+/* the Resume chip: the popover, collapsed, while a panel the stop did not ask for is open */
+.siqg-resume{position:fixed;left:0;top:0;z-index:var(--z-tour);display:inline-flex;align-items:center;min-height:var(--target);padding:2px 14px;border:1px solid var(--accent);border-radius:999px;background:var(--panel);color:var(--accent);box-shadow:var(--shadow);font:inherit;font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer}
+.siqg-resume:hover{background:var(--accent-soft)}
+.siqg-resume:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.siqg-live,.siqg-sr{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.siqg-live{position:fixed}
+.siqg-head{display:flex;align-items:center;gap:8px}
+.siqg-act{font-size:12px;font-weight:700;color:var(--ink)}
+.siqg-x{margin-left:auto;display:inline-grid;place-items:center;width:var(--target);height:var(--target);margin-top:-4px;margin-right:-8px;border:0;border-radius:8px;background:none;color:var(--muted);font:inherit;font-size:20px;line-height:1;cursor:pointer}
+.siqg-x:hover{color:var(--ink);background:var(--line)}
+.siqg-prog{display:flex;align-items:center;gap:10px;margin-top:-4px}
+.siqg-step{font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap}
+.siqg-segs{display:flex;flex:1;gap:2px;min-width:0}
+.siqg-seg{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.siqg-seg[data-state=done]{background:var(--accent-soft)}
+.siqg-seg[data-state=now]{background:var(--accent)}
+.siqg-seg.siqg-gap{margin-left:6px}
+.siqg-title{margin:0;font-family:var(--display);font-size:17px;font-weight:700;line-height:1.25}
+.siqg-title:focus,.siqg-title:focus-visible{outline:none}
+.siqg-body{margin:0;display:grid;grid-template-columns:minmax(0,1fr)}
+.siqg-body>span{grid-area:1/1}
+.siqg-ghost{visibility:hidden}
+.siqg-note{margin:0;padding:6px 10px;border-radius:8px;background:var(--layer-ai-soft);color:var(--ink);display:flex;align-items:center}
+.siqg-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 8px;padding-top:6px;border-top:1px solid var(--line)}
+.siqg-foot-multi .siqg-nav{flex-basis:100%;justify-content:flex-end}
+.siqg-items{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-width:0}
+.siqg-foot-multi .siqg-items{flex-direction:column;align-items:flex-start;gap:0} /* the turn row and the steps to come are two lines, never one wrapped row (final review, stop 8) */
+.siqg-nav{display:inline-flex;gap:4px;margin-left:auto}
+.siqg-btn{display:inline-flex;align-items:center;min-height:var(--target);padding:2px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-weight:500;cursor:pointer;white-space:nowrap}
+.siqg-btn:hover{border-color:var(--accent)}
+.siqg-btn:disabled{opacity:.55;cursor:default}
+.siqg-primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.siqg-gated{opacity:.55;cursor:default}
+.siqg-turnrow{display:inline-flex;flex-wrap:wrap;align-items:center;column-gap:4px;min-height:var(--target)}
+.siqg-turn{font-weight:700}
+.siqg-link{display:inline-flex;align-items:center;min-height:var(--target);padding:0 4px;border:0;background:none;color:var(--accent);font:inherit;font-weight:600;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.siqg-link:hover{text-decoration-thickness:2px}
+.siqg-done,.siqg-later,.siqg-busy{min-height:var(--target)}
+.siqg-done{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--ink)}
+.siqg-tick{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--good);color:var(--on-accent);font-size:12px;line-height:1}
+.siqg-tick .ic-check{width:10px;height:10px}
+.siqg-later{color:var(--muted)}
+.siqg-busy{display:inline-flex;align-items:center;color:var(--ink)}
+.siqg-pop button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.siqg-busy .spinner{display:inline-block;flex:none;width:12px;height:12px;margin-right:8px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--layer-ai);animation:siqg-spin .9s linear infinite}
+.siqg-error{background:var(--crit-soft);color:var(--ink)}
+.siqg-fallback{background:var(--warn-soft);color:var(--ink)}
+@keyframes siqg-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.siqg-busy .spinner{animation:none;border-right-color:var(--layer-ai)}}
+@media print{.siqg-pop,.siqg-ring,.siqg-beak,.siqg-resume{display:none}}

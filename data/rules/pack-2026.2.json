@@ -1,0 +1,695 @@
+{
+  "id": "pack-2026.2",
+  "version": "2026.2",
+  "effectiveFrom": "2026-10-01",
+  "rules": [
+    {
+      "id": "ELIG-ELECTION-PERIOD",
+      "version": "2",
+      "title": "Open election periods",
+      "plain": "Find the election periods open for this member today and the last date a change can still start without a gap in coverage.",
+      "category": "eligibility",
+      "severity": "block",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.62(a)(2)(iii), 422.62(b)(1)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.62",
+          "illustrative": false
+        },
+        {
+          "text": "CMS CY2027 MA and Part D enrollment and disenrollment guidance, section 30.6.10 (non-renewal window)",
+          "url": "https://www.cms.gov/files/document/cy-2027-c-d-enrollment-disenrollment-guidance.pdf",
+          "illustrative": false
+        }
+      ],
+      "caveat": "The Dec 8 to last day of February non-renewal window comes from CMS enrollment guidance, not from the regulation, whose 422.62(b) lead-in says \"at any time\".",
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "election-period@1",
+      "params": {
+        "considered": [
+          "AEP",
+          "SEP-NONRENEWAL",
+          "MA-OEP"
+        ],
+        "noGapRule": "non-renewal-last-day",
+        "dayCount": "et-calendar-days"
+      }
+    },
+    {
+      "id": "ELIG-SERVICE-AREA",
+      "version": "1",
+      "title": "Plan offered in the member's county",
+      "plain": "A plan is a candidate only if it is offered in the member's county for the plan year.",
+      "category": "eligibility",
+      "severity": "block",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.62(b)(1) (plan discontinued in the area)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.62",
+          "illustrative": false
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "service-area@1",
+      "params": {
+        "checkAt": "plan-year-start",
+        "relation": "OFFERED_IN"
+      }
+    },
+    {
+      "id": "ELIG-DSNP-MEDICAID",
+      "version": "1",
+      "title": "D-SNP requires Medicaid",
+      "plain": "A dual-eligible special needs plan is open only to members who also have Medicaid.",
+      "category": "eligibility",
+      "severity": "block",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2 (D-SNP: for special needs individuals entitled to medical assistance under a State plan under title XIX)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2",
+          "illustrative": false
+        },
+        {
+          "text": "42 CFR 422.52(b) (SNP eligibility, including the State Medicaid agency contract), 422.107(c)(2)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.52",
+          "illustrative": false
+        }
+      ],
+      "caveat": "Which Medicaid categories (full or partial benefit) a D-SNP accepts is set by its State Medicaid agency contract (422.107(c)(2)); the demo accepts both.",
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "medicaid-required@1",
+      "params": {
+        "planTypes": [
+          "D-SNP"
+        ],
+        "memberField": "medicaid",
+        "acceptedValues": [
+          "partial",
+          "full"
+        ]
+      }
+    },
+    {
+      "id": "SUIT-FORMULARY",
+      "version": "1",
+      "title": "Current prescriptions are covered",
+      "plain": "Every prescription the member takes must be on the plan's drug list. Prior authorization and step therapy are shown as flags.",
+      "category": "suitability",
+      "severity": "block",
+      "basis": "policy",
+      "citations": [
+        {
+          "text": "42 CFR 422.2274(c)(12): discuss drug coverage and costs before enrollment",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2274",
+          "illustrative": false
+        },
+        {
+          "text": "Suitability rule: drug list coverage (fictional carrier policy)",
+          "url": "policy:larkspur-suitability-formulary",
+          "illustrative": true
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "formulary-covers-all@1",
+      "params": {
+        "source": "TAKES",
+        "flagPriorAuth": true,
+        "flagStepTherapy": true
+      }
+    },
+    {
+      "id": "SUIT-PROVIDERS",
+      "version": "1",
+      "title": "Must-keep doctors are in network",
+      "plain": "The doctors and facilities the member wants to keep must be in the plan's network.",
+      "category": "suitability",
+      "severity": "block",
+      "basis": "policy",
+      "citations": [
+        {
+          "text": "42 CFR 422.2274(c)(12): discuss providers before enrollment",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2274",
+          "illustrative": false
+        },
+        {
+          "text": "Suitability rule: provider network (fictional carrier policy)",
+          "url": "policy:larkspur-suitability-providers",
+          "illustrative": true
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "providers-in-network@1",
+      "params": {
+        "mustKeepFrom": "preferences.mustKeepProviderIds",
+        "relation": "IN_NETWORK",
+        "checkAt": "plan-year-start"
+      }
+    },
+    {
+      "id": "SUIT-PREMIUM-PREF",
+      "version": "1",
+      "title": "Premium within the stated preference",
+      "plain": "Warn when a plan's monthly premium is above the maximum the member said they can pay.",
+      "category": "suitability",
+      "severity": "warn",
+      "basis": "policy",
+      "citations": [
+        {
+          "text": "Suitability rule: premium preference (fictional carrier policy)",
+          "url": "policy:larkspur-suitability-premium",
+          "illustrative": true
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "premium-preference@1",
+      "params": {
+        "preferenceFrom": "preferences.maxPremiumMonthly"
+      }
+    },
+    {
+      "id": "COST-ANNUAL",
+      "version": "2",
+      "title": "Estimated annual premium and drug cost",
+      "plain": "Estimate a year of premium plus drug cost for the current prescriptions, using the plan-year Part D parameters and capping drug spend at the out-of-pocket threshold.",
+      "category": "cost",
+      "severity": "info",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "CMS CY2027 Rate Announcement, Part D parameters (Tables V-2, V-6)",
+          "url": "https://www.cms.gov/files/document/2027-announcement.pdf",
+          "illustrative": false
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "annual-cost@1",
+      "params": {
+        "months": 12,
+        "capDrugSpendAtOopThreshold": true,
+        "rank": "ascending-cost"
+      }
+    },
+    {
+      "id": "MKT-WINDOW",
+      "version": "1",
+      "title": "Prospective-year marketing window",
+      "plain": "Plans for the next year may be marketed from October 1.",
+      "category": "content",
+      "severity": "block",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2263(a)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2263",
+          "illustrative": false
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "marketing-window@1",
+      "params": {
+        "startMonth": 10,
+        "startDay": 1
+      }
+    },
+    {
+      "id": "MKT-MISLEADING",
+      "version": "1",
+      "title": "No unsupported benefit, cost or coverage claims",
+      "plain": "A message may not state a benefit, cost or coverage that the plan's data does not support. Every number must match a fact.",
+      "category": "content",
+      "severity": "block",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2262 (general rule) and (a)(1)(i)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2262",
+          "illustrative": false
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "claims-grounded@1",
+      "params": {
+        "checkNumbers": true,
+        "checkBenefitClaims": true,
+        "allowNumbers": [
+          18006334227,
+          18774862048
+        ]
+      },
+      "fix": {
+        "kind": "replace-from-facts",
+        "params": {
+          "template": "your {drugCountWord} current prescriptions are on its {planYear} drug list, with copays from {minCopay} to {maxCopay} for a 30-day supply"
+        }
+      }
+    },
+    {
+      "id": "MKT-COMPARATIVE",
+      "version": "1",
+      "title": "Superlative and comparative claims",
+      "plain": "Words such as best, number one or top-rated are not allowed without substantiation on file.",
+      "category": "content",
+      "severity": "block",
+      "basis": "cms+policy",
+      "citations": [
+        {
+          "text": "42 CFR 422.2262(a)(1)(i); 422.2263(b)(5) (comparisons must be accurate, not misleading, supportable)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2263",
+          "illustrative": false
+        },
+        {
+          "text": "Superlative claims policy implementing 42 CFR 422.2262 and 422.2263(b)(5) (fictional carrier policy)",
+          "url": "policy:larkspur-marketing-superlatives",
+          "illustrative": true
+        }
+      ],
+      "caveat": "The CY2027 final rule deleted the explicit superlatives paragraph (former 422.2262(a)(1)(ii)) from 2026-06-01; its preamble still expects superlatives to be factually supported. Blocking them without substantiation on file is carrier policy implementing the general rules.",
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "superlative@1",
+      "params": {
+        "terms": [
+          "best",
+          "#1",
+          "no. 1",
+          "number one",
+          "number 1",
+          "top-rated",
+          "top rated",
+          "top ranked",
+          "highest rated",
+          "unbeatable",
+          "unmatched",
+          "unrivaled",
+          "unrivalled",
+          "greatest",
+          "finest",
+          "cheapest",
+          "lowest cost",
+          "lowest price",
+          "lowest premium",
+          "most affordable",
+          "better than any",
+          "ultimate",
+          "perfect"
+        ],
+        "allow": [
+          "best regards",
+          "best wishes",
+          "all the best"
+        ],
+        "normalize": [
+          "case",
+          "spacing",
+          "hyphen-spelling",
+          "homoglyph"
+        ],
+        "expandSpan": [
+          "the {term} plan in {county}",
+          "the {term} plan"
+        ]
+      },
+      "fix": {
+        "kind": "replace-from-facts",
+        "params": {
+          "template": "a plan offered in {county} for {planYear} that keeps {mustKeepProviders} in network"
+        }
+      }
+    },
+    {
+      "id": "MKT-FREE",
+      "version": "1",
+      "title": "Use of the word \"free\"",
+      "plain": "\"Free\" may be used only for a benefit with a $0 cost share for all enrollees, never for a premium or a cost-sharing reduction.",
+      "category": "content",
+      "severity": "block",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2262(a)(1)(xi), (a)(2)(iii)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2262",
+          "illustrative": false
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "free-term@1",
+      "params": {
+        "terms": [
+          "free",
+          "gratis",
+          "complimentary",
+          "no cost",
+          "no charge",
+          "zero dollars",
+          "zero cost"
+        ],
+        "allow": [
+          "feel free to",
+          "free to call",
+          "free to email",
+          "free to reach",
+          "free to ask",
+          "free to contact",
+          "free to reply",
+          "free to let",
+          "toll-free",
+          "free-standing"
+        ],
+        "allowedFor": "benefit-with-zero-cost-share-for-all-enrollees"
+      },
+      "fix": {
+        "kind": "remove-span",
+        "params": {
+          "handledWith": "MKT-MISLEADING"
+        }
+      }
+    },
+    {
+      "id": "DISC-FEDERAL-CONTRACT",
+      "version": "1",
+      "title": "Federal contracting statement",
+      "plain": "Marketing (not text messages) states the plan name, plan type, that the organization has a Medicare contract, and that enrollment depends on contract renewal.",
+      "category": "content",
+      "severity": "hold",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2267(e)(32)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2267",
+          "illustrative": false
+        }
+      ],
+      "caveat": "The regulation names the required elements, not a fixed sentence. The wording in this demo is illustrative.",
+      "appliesWhen": {
+        "fact": "draft.channel",
+        "ne": "sms"
+      },
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "required-disclosure@1",
+      "params": {
+        "disclosureId": "DISC-FEDERAL-CONTRACT",
+        "placement": "end"
+      },
+      "fix": {
+        "kind": "append-disclosure",
+        "params": {
+          "disclosureId": "DISC-FEDERAL-CONTRACT",
+          "planName": "recommended-plan.name",
+          "planType": "recommended-plan.type"
+        }
+      }
+    },
+    {
+      "id": "DISC-STAR-RATINGS",
+      "version": "1",
+      "title": "Star Ratings statement",
+      "plain": "If a message mentions a Star Rating it must give the overall rating, say it is out of 5, name the rating year and include the Star Ratings disclaimer.",
+      "category": "content",
+      "severity": "hold",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2263(c) and 422.2267(e)(33)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2263",
+          "illustrative": false
+        }
+      ],
+      "caveat": "Disclaimer wording is illustrative.",
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "star-rating-format@1",
+      "params": {
+        "requireOverallRating": true,
+        "requireOutOf5": true,
+        "requireRatingYear": true,
+        "disclosureId": "DISC-STAR-RATINGS"
+      },
+      "fix": {
+        "kind": "append-disclosure",
+        "params": {
+          "disclosureId": "DISC-STAR-RATINGS"
+        }
+      }
+    },
+    {
+      "id": "DISC-TPMO",
+      "version": "3",
+      "title": "Third-party marketing organization disclaimer",
+      "plain": "A third-party marketing organization that sells plans for more than one Medicare Advantage organization includes the required disclaimer. A plan-employed agent selling only this carrier's plans is outside that condition.",
+      "category": "content",
+      "severity": "hold",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2267(e)(41)(i); TPMO definition in 422.2260",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2267",
+          "illustrative": false
+        }
+      ],
+      "appliesWhen": {
+        "fact": "sender.employer",
+        "eq": "tpmo"
+      },
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "required-disclosure@1",
+      "params": {
+        "disclosureId": "DISC-TPMO",
+        "placement": "start"
+      },
+      "fix": {
+        "kind": "append-disclosure",
+        "params": {
+          "disclosureId": "DISC-TPMO"
+        }
+      }
+    },
+    {
+      "id": "CONSENT-CHANNEL",
+      "version": "2",
+      "title": "Contact only through permitted channels",
+      "plain": "Use a channel only if the member consented or started the contact. Unsolicited texts are not allowed, and a revocation is honoured.",
+      "category": "consent",
+      "severity": "block",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2264(a)(2)(iv), (a)(3)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2264",
+          "illustrative": false
+        },
+        {
+          "text": "47 CFR 64.1200(a)(10) (revocation by any reasonable method)",
+          "url": "https://www.ecfr.gov/current/title-47/section/64.1200",
+          "illustrative": false
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "channel-consent@1",
+      "params": {
+        "unsolicitedChannels": [
+          "sms",
+          "phone"
+        ],
+        "memberInitiatedCounts": true,
+        "honourRevocation": true
+      },
+      "fix": {
+        "kind": "switch-channel",
+        "params": {
+          "order": [
+            "email",
+            "phone"
+          ],
+          "textSwaps": [
+            {
+              "from": "I'll text you",
+              "to": "I'll email you"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "WF-AGENT-CERTIFIED",
+      "version": "1",
+      "title": "Sender is licensed and trained",
+      "plain": "The sender must be licensed in the member's state and trained and tested for the plan year.",
+      "category": "workflow",
+      "severity": "block",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2274(b)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2274",
+          "illustrative": false
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "agent-certified@1",
+      "params": {
+        "requireStateLicense": true,
+        "requireTrainedPlanYear": true
+      }
+    },
+    {
+      "id": "WF-SOA",
+      "version": "3",
+      "title": "Scope of Appointment before a marketing appointment",
+      "plain": "A Scope of Appointment must be agreed and recorded before a personal marketing appointment, and is valid for 12 months. No waiting period applies.",
+      "category": "workflow",
+      "severity": "hold",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2264(c)(3)(i), (iii); CY2027 final rule (CMS-4208-F3, 91 FR 17384, Apr 6 2026)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2264",
+          "illustrative": false
+        },
+        {
+          "text": "CY2027 final rule: effective 2026-06-01; marketing provisions apply to CY2027 marketing from 2026-10-01",
+          "url": "https://www.federalregister.gov/documents/2026/04/06/2026-06600",
+          "illustrative": false
+        }
+      ],
+      "caveat": "The rule took effect 2026-06-01; the pack applies the no-wait version from 2026-10-01, when CMS applies the new marketing policies to CY2027 marketing.",
+      "effectiveFrom": "2026-10-01",
+      "evaluator": "soa@1",
+      "params": {
+        "waitHours": 0,
+        "validMonths": 12,
+        "requiredBeforeAppointment": true
+      }
+    },
+    {
+      "id": "WF-PRE-ENROLLMENT-TOPICS",
+      "version": "1",
+      "title": "Pre-enrollment topics checklist",
+      "plain": "Before enrollment the agent discusses providers, pharmacies, drug coverage and costs, costs of services, premiums, benefits and health care needs.",
+      "category": "workflow",
+      "severity": "info",
+      "basis": "cms",
+      "citations": [
+        {
+          "text": "42 CFR 422.2274(c)(12)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2274",
+          "illustrative": false
+        },
+        {
+          "text": "42 CFR 422.2267(e)(4) (pre-enrollment checklist)",
+          "url": "https://www.ecfr.gov/current/title-42/section/422.2267",
+          "illustrative": false
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "pre-enrollment-topics@1",
+      "params": {
+        "topics": [
+          "Primary care providers and specialists",
+          "Pharmacies",
+          "Prescription drug coverage and costs, including whether current prescriptions are covered",
+          "Costs of health care services",
+          "Premiums",
+          "Benefits",
+          "Specific health care needs"
+        ]
+      }
+    },
+    {
+      "id": "WF-APPROVAL",
+      "version": "1",
+      "title": "Supervisor approval",
+      "plain": "A plan-change recommendation, or any message the gate corrected, needs a supervisor's approval before it is delivered.",
+      "category": "workflow",
+      "severity": "hold",
+      "basis": "policy",
+      "citations": [
+        {
+          "text": "Approval workflow (fictional carrier policy)",
+          "url": "policy:larkspur-workflow-approval",
+          "illustrative": true
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "approval-required@1",
+      "params": {
+        "approverRole": "sales-supervisor",
+        "triggers": [
+          "plan-change-recommendation",
+          "auto-corrected-message"
+        ]
+      },
+      "fix": {
+        "kind": "route-approval",
+        "params": {
+          "approverRole": "sales-supervisor"
+        }
+      }
+    },
+    {
+      "id": "WF-EXCEPTION-PA",
+      "version": "1",
+      "title": "Prior authorization opens a pharmacy case",
+      "plain": "A current prescription that needs prior authorization on the recommended plan opens a pharmacy case; the case notes the transition fill in the first 90 days.",
+      "category": "workflow",
+      "severity": "warn",
+      "basis": "cms+policy",
+      "citations": [
+        {
+          "text": "42 CFR 423.120(b)(3) (transition supply in the first 90 days)",
+          "url": "https://www.ecfr.gov/current/title-42/section/423.120",
+          "illustrative": false
+        },
+        {
+          "text": "Pharmacy exception routing (fictional carrier policy)",
+          "url": "policy:larkspur-workflow-exception-pa",
+          "illustrative": true
+        }
+      ],
+      "effectiveFrom": "2025-10-01",
+      "evaluator": "exception-route@1",
+      "params": {
+        "trigger": "prior-authorization-on-current-drug",
+        "queue": "Pharmacy Services",
+        "transitionFillDays": 90
+      }
+    }
+  ],
+  "disclosures": [
+    {
+      "id": "DISC-FEDERAL-CONTRACT",
+      "version": "1",
+      "effectiveFrom": "2025-10-01",
+      "text": "{planName} is a {planType} plan with a Medicare contract. Enrollment in {planName} depends on contract renewal.",
+      "citation": {
+        "text": "42 CFR 422.2267(e)(32): required elements; sentence is illustrative wording",
+        "url": "https://www.ecfr.gov/current/title-42/section/422.2267",
+        "illustrative": true
+      }
+    },
+    {
+      "id": "DISC-STAR-RATINGS",
+      "version": "1",
+      "effectiveFrom": "2025-10-01",
+      "text": "{planName} has an overall Star Rating of {starRating} out of 5 stars for {ratingYear}. Medicare evaluates plans every year based on a 5-star rating system.",
+      "citation": {
+        "text": "42 CFR 422.2263(c), 422.2267(e)(33): required content; sentence is illustrative wording",
+        "url": "https://www.ecfr.gov/current/title-42/section/422.2267",
+        "illustrative": true
+      }
+    },
+    {
+      "id": "DISC-TPMO",
+      "version": "3",
+      "effectiveFrom": "2025-10-01",
+      "text": "We do not offer every plan available in your area. Currently we represent {organizationCount} organizations which offer {planCount} products in your area. Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options.",
+      "citation": {
+        "text": "42 CFR 422.2267(e)(41), disclaimer text in force from 2026-06-01 (eCFR read 2026-10-15)",
+        "url": "https://www.ecfr.gov/current/title-42/section/422.2267",
+        "illustrative": false
+      }
+    }
+  ],
+  "contentHash": "ebab36af61ce387a1639d99b57a79cac2e8c1331bc30e9e0293956b737d34900",
+  "fictional": true
+}

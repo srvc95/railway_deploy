@@ -1,0 +1,59 @@
+/* Copied from keel-prototype v1.2.3 public/ctx.css, adapted for adopt-keel-shell */
+/* add-agentic-ux S2: point-and-ask. Pointable records get an outline on hover, focus and when attached (outline only, so no box
+   changes), one floating Ask button below the dock in stacking order, and the Point toggle in the composer. Original tokens
+   and --siqx-* tokens only. */
+
+/* highlight (Point mode only, change cosmetic-and-oncall requirement "Hover outline only in Point mode"): one solid accent line, 2 px at a 2 px offset; it follows the element's own border radius.
+   The hovered target is the held one: [data-ctx-hot] (set while the Ask button is shown) keeps it lit on the way to the button and
+   while the pointer is on it; html[data-ctx-hold] turns the pure :hover rule off so only the held target is lit.
+   Outside Point mode a record shows no outline: a table row tints (below), a card shows nothing. A cell is never outlined (data-ctx belongs on the row). */
+html[data-ctx-pointing]:not([data-ctx-hold]) [data-ctx]:not(td):hover:not(:has([data-ctx]:hover)),
+html[data-ctx-pointing] [data-ctx]:not(td)[data-ctx-hot]{outline:2px solid var(--accent);outline-offset:2px}
+/* attached (a chip on the question): kept in every mode, it is the selection. Set from the chip state after every render */
+[data-ctx]:not(td)[data-ctx-attached]{outline:2px solid var(--accent);outline-offset:2px}
+td[data-ctx][data-ctx-attached]{background:var(--accent-soft)}
+/* a highlighted element with no radius of its own gets the radius token; a real radius (higher specificity) always wins */
+:where(html[data-ctx-pointing] [data-ctx]:not(td):hover,html[data-ctx-pointing] [data-ctx]:not(td)[data-ctx-hot],[data-ctx]:not(td)[data-ctx-attached]){border-radius:var(--siqx-radius-sm)}
+/* messages and the Coach greeting sit in clipped boxes: draw their outline inside */
+html[data-ctx-pointing]:not([data-ctx-hold]) [data-ctx^="answer:"]:hover:not(:has([data-ctx]:hover)),
+html[data-ctx-pointing] [data-ctx^="answer:"][data-ctx-hot],
+[data-ctx^="answer:"][data-ctx-attached]{outline-offset:-2px}
+/* table rows sit in a clipped scroller: draw their outline inside */
+html[data-ctx-pointing]:not([data-ctx-hold]) tr[data-ctx]:hover:not(:has([data-ctx]:hover)),
+html[data-ctx-pointing] tr[data-ctx][data-ctx-hot],
+tr[data-ctx][data-ctx-attached]{outline-offset:-2px}
+/* outside Point mode a pointable row only tints, like every other row of a table */
+tbody tr[data-ctx]:hover{background:var(--sunk)}
+
+/* cursor (Point mode only): a sleek arrow (24 px, and 48 px for 2x), inline SVG, hotspot on the tip. A cursor image cannot read custom properties,
+   so its two neutral colours (ink and white edge) are literal here and nowhere else in this file. */
+html[data-ctx-pointing] [data-ctx]{cursor:image-set(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M4 3v16.5l4.4-3.9 2.8 6 2.8-1.2-2.8-6H17z' fill='%2314213A' stroke='%23FFFFFF' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 1x,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Cpath d='M4 3v16.5l4.4-3.9 2.8 6 2.8-1.2-2.8-6H17z' fill='%2314213A' stroke='%23FFFFFF' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 2x) 4 3,default}
+
+/* ---------- the floating Ask button: one per page, positioned by ctx.js. Layer order (tokens.css): --z-dock < --z-ask < --z-ask-over < --z-panel < --z-tour-ring < --z-tour < --z-toast < --z-alert ---------- */
+.siqx-ask{
+  position:fixed;z-index:var(--z-ask);
+  display:inline-flex;align-items:center;gap:var(--siqx-space-1);
+  height:26px;padding:0 var(--siqx-space-3) 0 var(--siqx-space-2);border-radius:13px;
+  border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);box-shadow:var(--shadow);
+  font:600 12px/1 var(--body);cursor:pointer;
+}
+.siqx-ask[hidden]{display:none}
+/* no free position beside the guide popover: the button rides above it */
+.siqx-ask[data-over]{z-index:var(--z-ask-over)}
+/* invisible hit padding: 8 px beyond the visible border on every side (inset 9 = the 1 px border + 8) belongs to the button for pointer events (ctx.js HIT_PAD uses the same 8) */
+.siqx-ask::before{content:"";position:absolute;inset:-9px}
+.siqx-ask[data-compact]{height:20px;padding:0 var(--siqx-space-2) 0 6px;font-size:var(--text-label)}
+.siqx-ask[data-icon]{padding:0 6px}
+.siqx-ask[data-icon] span{display:none}
+.siqx-ask:hover{filter:brightness(1.1)}
+.siqx-ask:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* ---------- the Point toggle, in the composer row ---------- */
+.siqx-btn.siqx-point{
+  display:inline-flex;flex-direction:row;align-items:center;justify-content:center;white-space:nowrap;
+  width:auto;gap:var(--siqx-space-1);padding:0 var(--siqx-space-3);
+  font:600 12.5px/1 var(--body);
+}
+.siqx-point[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.siqx-point[aria-pressed="true"]:hover{color:var(--on-accent);border-color:var(--accent);filter:brightness(1.08)}
+.siqx-point:focus-visible{outline:2px solid var(--accent);outline-offset:2px}

@@ -1,0 +1,8 @@
+{
+  "id": "sim-reply-1",
+  "fictional": true,
+  "channel": "email",
+  "subject": "Re: Your 2027 Medicare plan options",
+  "text": "Thank you, this is helpful. Is Dr. Sullivan really in the Choice plan? Could you call me Thursday morning? I'd like to go over it before I sign anything.",
+  "delayMs": 5000
+}

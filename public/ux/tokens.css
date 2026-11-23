@@ -1,0 +1,26 @@
+/* Copied from keel-prototype v1.2.3 public/ux/tokens.css, adapted for adopt-keel-shell */
+/* add-agentic-ux design tokens (--siqx-*). Tokens only: no selectors other than :root, no literal colours. */
+:root{
+  --siqx-space-1:4px;
+  --siqx-space-2:8px;
+  --siqx-space-3:12px;
+  --siqx-space-4:16px;
+  --siqx-space-5:20px;
+  --siqx-radius:14px;
+  --siqx-radius-sm:10px;
+  --siqx-side-w:252px;
+  --siqx-gutter:28px;
+  /* stacking: the layer scale of css/tokens.css is the only one; these names stay for the files that still spell them */
+  --siqx-z-dock:var(--z-dock);
+  --siqx-z-ask:var(--z-ask);
+  --siqx-z-ask-over:var(--z-ask-over);
+  --siqx-z-toast:var(--z-toast);
+  --siqx-sheet-floor:160px;
+  --siqx-msg-user-max:80%;
+  --siqx-measure:39em;
+  --siqx-target:28px;
+  --siqx-fade-h:24px;
+  --siqx-grip-h:14px;
+  --siqx-shadow-lift:0 -6px 28px color-mix(in srgb,var(--ink) 22%,transparent);
+  --siqx-fade-clear:color-mix(in srgb,var(--bg) 0%,transparent);
+}

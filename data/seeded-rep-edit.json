@@ -1,0 +1,14 @@
+{
+  "id": "seeded-rep-edit-1",
+  "fictional": true,
+  "label": "Seeded for the demo: an edit by the licensed agent",
+  "authorId": "agent-mitchell",
+  "appendText": "Dottie, Northlake Choice is the best plan in Lorain County and your prescriptions will be free. I'll text you the details.",
+  "channel": "sms",
+  "expectedRuleIds": [
+    "MKT-COMPARATIVE",
+    "MKT-FREE",
+    "MKT-MISLEADING",
+    "CONSENT-CHANNEL"
+  ]
+}

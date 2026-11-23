@@ -1,0 +1,149 @@
+/* Why sheet and replay (change polish-and-realism, UI3). Right-hand side sheet in the thread-sheet look: header with provenance, three tabs, one scrolling body.
+   Tokens only. Figures use tabular numerals in the body face, never monospace; hashes and rule ids are the only code-face text.
+   An expected change (the replay under today's rules) is never red: del is muted and struck, ins is ink and bold. */
+
+#why-sheet{position:fixed;top:0;right:0;bottom:0;z-index:var(--z-panel);width:min(var(--sheet-w),100vw);display:flex;flex-direction:column;background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);font-variant-numeric:tabular-nums lining-nums}
+#why-sheet[hidden]{display:none}
+#why-sheet:focus{outline:none}
+#why-sheet :is(li,p,dd,dt,summary,blockquote,h2,h3,h4,h5,.rp-l,.rp-vals){overflow-wrap:anywhere}
+#why-sheet code{font-family:var(--mono);font-size:12px}
+#why-sheet summary{cursor:pointer;font-weight:600;color:var(--accent);border-radius:var(--r-pill)}
+#why-sheet summary:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+#why-sheet :is(button,[tabindex="0"]):focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+
+/* header: the shared sheet header (.ui-sheet-head in primitives.css), then the tab bar */
+.why-tabbar{flex:none;padding:0 var(--space-5) var(--space-3);border-bottom:1px solid var(--line)}
+.why-tabs{max-width:360px}
+.why-tab{cursor:pointer;min-height:var(--target)}
+.why-tab[aria-selected="true"]{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
+.why-tab:hover{color:var(--ink)}
+
+/* body */
+.why-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:var(--space-3) var(--space-5) var(--space-5)}
+.why-body > *{min-width:0}
+.why-panel{display:flex;flex-direction:column;gap:10px}
+.why-sec{display:flex;flex-direction:column;gap:var(--space-2);padding-top:10px;border-top:1px solid var(--line);scroll-margin-top:var(--space-3)}
+.why-sec:first-child{border-top:0;padding-top:0}
+.why-sec .sec-h{margin-bottom:0;gap:var(--space-2)}
+.why-sec .sec-h h3{font-size:var(--text-body);font-weight:600}
+.why-sec .ui-stat-row{grid-template-columns:repeat(auto-fit,minmax(96px,1fr));padding:6px var(--space-3);gap:var(--space-2) var(--space-3)}
+.why-count{font-size:var(--text-label);background:var(--sunk);padding:0 7px;border-radius:var(--r-pill);color:var(--muted)}
+.why-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-2)}
+.why-chips{display:flex;flex-wrap:wrap;gap:var(--space-1) var(--space-2);margin:0}
+.why-more{margin-top:var(--space-1)}
+.why-more > summary,.why-group > summary{font-size:var(--text-meta)}
+.why-quote{display:block;margin:2px 0 0;padding-left:var(--space-2);border-left:3px solid var(--layer-ai);color:var(--muted);font-style:italic;font-size:var(--text-meta)}
+.why-busy{display:flex;align-items:center;margin:0;color:var(--muted)}
+.why-gate-link{align-self:flex-start}
+/* the one link row that opens the Replay tab */
+.why-link{align-self:flex-start;display:inline-flex;align-items:center;gap:var(--space-2);min-height:var(--target);padding:0;border:0;background:none;color:var(--accent);font:600 var(--text-body)/1.3 var(--body);cursor:pointer;border-radius:var(--r-pill)}
+.why-link:hover{text-decoration:underline}
+.why-link:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+/* facts in a sheet column are one column of label and value, whatever the window width */
+#why-sheet .ui-facts{grid-template-columns:minmax(0,1fr)}
+#why-sheet .ui-fact{grid-template-columns:minmax(72px,30%) minmax(0,1fr)}
+#why-sheet .ui-fact:nth-child(2){border-top:1px solid var(--line)}
+#why-sheet .ui-verified{margin-bottom:var(--space-1)}
+
+/* rules that fired */
+.why-attn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.why-attn{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:var(--space-2);align-items:start;padding:3px 0;border-top:1px solid var(--line);font-size:var(--text-meta);line-height:1.4}
+.why-attn:first-child{border-top:0}
+.why-attn .rule-id{color:var(--muted);white-space:nowrap}
+.why-mark{width:16px;height:16px;border-radius:50%;display:grid;place-items:center;font:700 var(--text-label)/1 var(--body);margin-top:1px;background:var(--sunk);color:var(--muted)}
+.is-fail > .why-mark{background:var(--state-block);color:var(--on-accent)}
+.is-hold > .why-mark{background:var(--state-hold);color:var(--on-accent)}
+.is-pass > .why-mark,.is-approved > .why-mark{background:var(--state-pass);color:var(--on-accent)}
+.is-replaced > .why-mark,.is-corrected > .why-mark{background:var(--sunk);color:var(--muted)}
+.why-na{margin:0;line-height:1.4}
+.why-na > span{display:inline-block;width:16px;text-align:center;color:var(--muted)}
+.why-attn-k{font-weight:600;color:var(--muted)}
+
+/* disclosures, approver, versions */
+.why-list .rule-id{margin-right:var(--space-2)}
+.why-disc-t{font-size:var(--text-meta);color:var(--muted)}
+.why-disc{margin:4px 0 0;padding:6px 10px;border-left:3px solid var(--layer-rules);background:var(--layer-rules-soft)}
+.why-ver{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-2) var(--space-4)}
+.why-more .why-ver{margin-top:var(--space-2);grid-template-columns:repeat(4,minmax(0,1fr))}
+.why-pair{border-top:1px solid var(--line);padding-top:var(--space-3);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-4)}
+.why-pair > .why-sec{min-width:0;border-top:0;padding-top:0}
+
+/* evidence */
+.why-group{border:1px solid var(--line);border-radius:var(--r-inner)}
+.why-group > summary{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);padding:var(--space-2) var(--space-3);list-style:none;color:var(--ink)}
+.why-group > summary::-webkit-details-marker{display:none}
+.why-group > summary::after{content:'';flex:none;width:7px;height:7px;margin-left:var(--space-2);margin-right:2px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translate(-2px,-2px);transition:transform .12s}
+.why-group[open] > summary::after{transform:rotate(225deg)}
+.why-group > summary .why-count{margin-left:auto}
+.why-group .tbl-wrap{border-top:1px solid var(--line)}
+.why-group th,.why-group td{padding:6px var(--space-3);font-size:var(--text-meta)}
+.why-group td:first-child{width:52%}
+.why-val{font-weight:500}
+.why-rel{font-size:var(--text-meta)}
+.why-matrix{border:1px solid var(--line);border-radius:var(--r-inner)}
+.why-matrix th,.why-matrix td{padding:6px var(--space-2);font-size:var(--text-meta)}
+.why-matrix thead th{white-space:normal;vertical-align:bottom;line-height:1.25}
+.why-matrix tbody th{font:500 var(--text-meta)/1.35 var(--body);letter-spacing:0;text-transform:none;color:var(--ink);white-space:normal}
+.why-colh{text-align:center}
+.why-rule-t{display:block}
+.why-matrix .rule-id{color:var(--muted)}
+.why-cell{text-align:center;color:var(--muted);font-weight:700}
+.why-cell.is-pass,.why-cell.is-approved{color:var(--state-pass)}
+.why-cell.is-fail{color:var(--state-block)}
+.why-cell.is-hold{color:var(--state-hold)}
+.why-cell.is-replaced,.why-cell.is-corrected{color:var(--muted)}
+.why-legend{margin:0}
+
+/* replay: two outcome cards, then the cause, then what changed */
+.rp{display:flex;flex-direction:column;gap:var(--space-3);min-width:0}
+.rp-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3)}
+.rp-card{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-3);border:1px solid var(--line);border-radius:var(--r-inner);background:var(--panel);min-width:0}
+.rp-card .ui-callout{padding:var(--space-2) var(--space-3);font-size:var(--text-meta)}
+.rp-eyebrow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-1) var(--space-2);margin:0;font-size:var(--text-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.rp-date{letter-spacing:0;text-transform:none;font-weight:500;white-space:nowrap}
+.rp-eyebrow .ui-verified{letter-spacing:0;text-transform:none;font-size:var(--text-meta)}
+/* an empty slot is text on the card's own surface, not a dashed drop zone */
+.rp-empty{padding:0;border:0;background:none;gap:0}
+.rp-empty b{font:500 var(--text-body)/1.3 var(--body);color:var(--muted)}
+.rp-out{margin:0;font-weight:600;font-size:var(--text-body)}
+.rp-meta{margin:0;font-size:var(--text-meta);color:var(--muted)}
+.rp-run{align-self:flex-start;margin-top:auto}
+.rp-slot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2)}
+.rp-slot .rp-run{margin-top:0}
+.rp-run[aria-busy="true"]{opacity:.7}
+.rp-run[aria-disabled="true"]{cursor:progress}
+.rp-cause{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-3);border-radius:var(--r-inner);background:var(--tone-info-soft);border-left:3px solid var(--tone-info)}
+.rp-cause-h{margin:0;font-weight:600}
+.rp-rules{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-1);font-size:var(--text-meta)}
+.rp-rules li,.rp-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-3);align-items:baseline}
+.rp-rules .rule-id{color:var(--muted);margin-left:var(--space-1)}
+.rp-changes{display:flex;flex-direction:column;gap:var(--space-2)}
+.rp-sec{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2)}
+.rp-sec h4,.rp-group h5{margin:0;font-size:var(--text-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.rp-n{font-weight:500;letter-spacing:0}
+.rp-diff{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.rp-row{padding:6px 0;border-top:1px solid var(--line);font-size:var(--text-meta)}
+.rp-diff > .rp-row:first-child{border-top:0}
+.rp-l{font-weight:500}
+.rp-vals{display:flex;flex-wrap:wrap;gap:2px var(--space-1);justify-content:flex-end;text-align:right}
+.rp-arrow{color:var(--muted)}
+.rp del{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+.rp ins{text-decoration:none;font-weight:600;color:var(--ink)}
+.rp-group{margin-top:var(--space-3)}
+.rp-group h5{margin-bottom:var(--space-1)}
+.rp-more{margin-top:var(--space-1)}
+.rp-more > summary{font-size:var(--text-meta)}
+@media (max-width:1279px){ .is-full .rp-cards{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:640px){ .why-pair{grid-template-columns:minmax(0,1fr)} .rp-cards{grid-template-columns:minmax(0,1fr)} .why-ver{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+/* compliance block after approval (views-compliance.js): one neutral line, the rules one press away */
+.cmp-history > summary{display:flex;align-items:center;gap:var(--space-2);cursor:pointer;list-style:none;padding:var(--space-2) 0;font-size:var(--text-meta);font-weight:500;color:var(--muted);border-radius:var(--r-pill)}
+.cmp-history > summary::-webkit-details-marker{display:none}
+.cmp-history > summary::after{content:'';flex:none;width:7px;height:7px;margin-left:var(--space-1);border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translate(-2px,-2px);transition:transform .12s}
+.cmp-history[open] > summary::after{transform:rotate(225deg)}
+.cmp-history > summary:focus-visible{outline:var(--ring);outline-offset:var(--ring-offset)}
+.cmp-history-body{display:flex;flex-direction:column;gap:var(--space-3);padding-top:var(--space-2)}
+.cmp-done{position:relative}
+.cmp-done > .btn{position:absolute;top:0;right:0;min-height:0;padding:var(--space-1) var(--space-3);font-size:var(--text-meta)}
+.cmp-done > details > summary{padding-right:160px}
+.cmp-history-lead{margin:0;font-size:var(--text-meta);color:var(--muted)}

@@ -1,0 +1,45 @@
+/* demo-polish: the "Prepared for you" panel, the outcome strip, sample-member briefs and the earlier-history sections. Colours from tokens.css only. */
+
+/* ---------- home: Prepared for you ---------- */
+.prep-card{margin-bottom:16px;border:1px solid var(--line);position:relative;overflow:hidden}
+.prep-card::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--layer-ai)}
+.prep-card.is-ready::before{background:var(--good)}
+.prep-card .sec-h h2{font-size:18px;margin:0}
+.prep-card .sec-h{display:flex;align-items:center;gap:12px}
+.prep-sub{margin:4px 0 12px}
+.prep-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.prep-row{display:flex;align-items:flex-start;gap:8px;padding:10px 12px;border-radius:10px;background:var(--sunk);font-size:13px;line-height:1.35;min-height:56px}
+.prep-row[data-state="working"]{outline:2px solid var(--layer-ai);outline-offset:-2px}
+.prep-row[data-state="waiting"]{opacity:.55}
+.prep-row .small{margin-left:auto;white-space:nowrap;padding-left:6px}
+.prep-ic{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex:0 0 16px;font-size:12px;color:var(--muted)}
+.prep-ic.is-done{border-radius:50%;background:var(--good);color:var(--panel);font-weight:700;font-size:10px}
+.prep-row .stage-spinner{margin-right:0;flex:0 0 14px}
+.prep-text{flex:1}
+.prep-result{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.prep-headline{font-size:16px;margin:0 0 4px}
+.prep-acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+@media (max-width:1100px){.prep-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- member overview: what this means for her ---------- */
+.outcome-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.outcome-strip .oc{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--panel)}
+.outcome-strip .oc label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+.outcome-strip .oc b{display:block;font-size:17px}
+.outcome-strip .oc span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.outcome-strip .oc.is-save{border-color:var(--good)}
+@media (max-width:1100px){.outcome-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- sample member brief ---------- */
+.brief-steps{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.brief-steps li{display:grid;grid-template-columns:140px 1fr;gap:12px;font-size:14px}
+.brief-steps li > span:first-child{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+
+/* ---------- earlier history ---------- */
+.hist{margin-top:16px}
+.hist .sec-h{display:flex;align-items:center;gap:10px;margin:0 0 8px}
+.hist .sec-h h3{margin:0;font-size:14px}
+.hist table{opacity:.92}
+.hist-tag{font-size:11px;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:1px 8px}
+.perf-week{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 14px;font-size:13px;color:var(--muted)}
+.perf-week b{color:var(--ink)}
